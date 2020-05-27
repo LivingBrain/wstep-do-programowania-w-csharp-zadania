@@ -8,73 +8,18 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Jaką wartość przyjmą zmienne użyte w programie po wykonaniu poniższych instrukcji? 
-             * Najpierw ustal wartości zmiennych, a dopiero później sprawdź wynik uruchamiając program
-                a)
-                int x = 1, y = 4, z = 2;
-                bool wynik = (x++ > 1 && y++ == 4 && z-- > 0);
-                Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
-                b)
-                int x = 1, y = 4, z = 2;
-                bool wynik = (x++ > 1 & y++ == 4 && z-- > 0);
-                Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
-                c)
-                int x = 1, y = 4, z = 2;
-                bool wynik = (x++ > 1 & y++ == 4 & z-- > 0);
-                Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
-                d)
-                int x = 1, y = 3, z = 4;
-                bool wynik = (x == 1 || y++ > 2 || ++z > 0);
-                Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
-                e)
-                int x = 1, y = 3, z = 4;
-                bool wynik = (x == 1 | y++ > 2 || ++z > 0);
-                Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
-                f)
-                int x = 1, y = 3, z = 4;
-                bool wynik = (x == 1 | y++ > 2 | ++z > 0);
-                Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z); 
+             * Po wykonaniu przedstawionego niżej kodu programu zmienna gestoscZaludnienia
+             * przyjmie wartość 0. Odpowiedz dlaczego i zmień program (w linii, gdzie jest obliczana 
+             * zmienna gestoscZaludnienia) tak, aby wartość tej zmiennej wynosiła 0,1 (czyli 10/100):
+             * int powierzchnia = 100, osoby = 10;
+             * double gestoscZaludnienia = osoby/powierzchnia;
+             * Console.WriteLine(gestoscZaludnienia);
              */
 
-            Console.WriteLine("a)");
-            int x = 1, y = 4, z = 2;
-            bool wynik = (x++ > 1 && y++ == 4 && z-- > 0);
-            Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
-
-            Console.WriteLine("b)");
-            x = 1;
-            y = 4; 
-            z = 2;
-            wynik = (x++ > 1 & y++ == 4 && z-- > 0);
-            Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
-
-            Console.WriteLine("c)");
-            x = 1;
-            y = 4; 
-            z = 2;
-            wynik = (x++ > 1 & y++ == 4 & z-- > 0);
-            Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
-
-            Console.WriteLine("d)");
-            x = 1;
-            y = 3; 
-            z = 4;
-            wynik = (x == 1 || y++ > 2 || ++z > 0);
-            Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
-
-            Console.WriteLine("e)");
-            x = 1;
-            y = 3; 
-            z = 4;
-            wynik = (x == 1 | y++ > 2 || ++z > 0);
-            Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
-
-            Console.WriteLine("f)");
-            x = 1;
-            y = 3; 
-            z = 4;
-            wynik = (x == 1 | y++ > 2 | ++z > 0);
-            Console.WriteLine("wynik={0} x={1} y={2} z={3}", wynik, x, y, z);
+            //int powierzchnia = 100, osoby = 10; 
+            double powierzchnia = 100, osoby = 10; // With two values as integer the arithmetic is performed as integer arithmetic. This require to be performed as float.
+            double gestoscZaludnienia = osoby / powierzchnia;
+            Console.WriteLine(gestoscZaludnienia);
 
             Console.ReadKey();
         }
