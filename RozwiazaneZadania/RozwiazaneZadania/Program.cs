@@ -8,21 +8,19 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Co wyświetli się na ekranie po wykonaniu poniższych instrukcji. Najpierw oblicz 
-             * wartości zmiennych, a dopiero później sprawdź wynik uruchamiając program.
-             *  int x, y = 5;
-             *  x = ++y * 2;
-             *  x = y++;
-             *  x = y--;
-             *  Console.WriteLine(++y); 
+             * Po wykonaniu poniższych linii programu: 
+             * bool x;
+             * int y = 1, z = 1;
+             * x = (y == 1 && z++ == 1);
              */
 
-            int x, y = 5;
-            x = ++y * 2;
-            x = y++;
-            x = y--;
-            Console.WriteLine(y);
-            Console.WriteLine(++y);
+            bool x;
+            int y = 1, z = 1;
+            x = (y == 1 && z++ == 1);
+
+            Console.WriteLine($"x value = {x}");
+            Console.WriteLine($"y value = {y}");
+            Console.WriteLine($"z value = {z}");
 
             Console.ReadKey();
         }
