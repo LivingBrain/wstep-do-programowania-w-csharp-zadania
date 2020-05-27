@@ -8,21 +8,28 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Po wykonaniu poniższych linii programu:
-             * int x = 2, y = 3;
-             * x *= y * 2;
+             * Jaką wartość będzie miała zmienna x po wykonaniu poniższych instrukcji? Najpierw
+             * oblicz wartości zmiennych, a dopiero później sprawdź wynik uruchamiając program.
+             * int x, y = 4;
+             * x = (y -= 2);
+             * x = y++;
+             * x = y--; 
              */
 
-            int x = 2, y = 3;
-            x *= y * 2;
-            
-            Console.WriteLine("x *= y * 2;");
+            int x, y = 4;
+            Console.WriteLine("int x, y = 4;");
+            x = (y -= 2);
+            Console.WriteLine("x = (y -= 2);");
             Console.WriteLine(x);
-            Console.WriteLine("x *= 3 * 2");
-            Console.WriteLine("x *= 6");
-            Console.WriteLine("x = x * 6");
-            Console.WriteLine("x = 2 * 6");
-            Console.WriteLine("x = 12");
+            Console.WriteLine($"y value = {y}");
+            x = y++;
+            Console.WriteLine("x = y++;");
+            Console.WriteLine($"y value = {y}");
+            Console.WriteLine($"x value = {x}");
+            x = y--;
+            Console.WriteLine("x = y--;");
+            Console.WriteLine($"y value = {y}");
+            Console.WriteLine($"x value = {x}");
 
             Console.ReadKey();
         }
