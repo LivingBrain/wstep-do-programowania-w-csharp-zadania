@@ -9,20 +9,21 @@ namespace RozwiazaneZadania
         {
             /*
              * Po wykonaniu poniższych linii programu:
-             * int x = 100;
-             * Console.WriteLine(++x * 2);
+             * int x = 2, y = 3;
+             * x *= y * 2;
              */
 
-            var x = 100;
-            var y = 100;
+            int x = 2, y = 3;
+            x *= y * 2;
+            
+            Console.WriteLine("x *= y * 2;");
+            Console.WriteLine(x);
+            Console.WriteLine("x *= 3 * 2");
+            Console.WriteLine("x *= 6");
+            Console.WriteLine("x = x * 6");
+            Console.WriteLine("x = 2 * 6");
+            Console.WriteLine("x = 12");
 
-            Console.WriteLine("Increment operator");
-            Console.WriteLine("int x = 100;");
-            Console.WriteLine("Console.WriteLine(++x * 2);");
-            Console.WriteLine(++x * 2);
-            Console.WriteLine("int y = 100;");
-            Console.WriteLine("Console.WriteLine(y++ * 2);");
-            Console.WriteLine(y++ * 2);
             Console.ReadKey();
         }
     }
