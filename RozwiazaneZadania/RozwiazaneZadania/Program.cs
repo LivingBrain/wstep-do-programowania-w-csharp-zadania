@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace RozwiazaneZadania
 {
@@ -7,24 +8,34 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program przeliczający temperaturę w stopniach Celsjusza na temperaturę w
-             * stopniach Fahrenheita. Program ma prosić użytkownika o podanie temperatury w stopniach
-             * Celsjusza. Wzór: 
-             * F = 32 + (9/5)C
+             * Napisz program, który oblicza deltę dla równania kwadratowego ax^2 + bx^2 + x = 0
+             * Program ma prosić użytkownika o podanie współczynników równania a, b oraz c. Wzór: 
+             * delta = b^2 - 4ac
              */
 
-            Console.WriteLine("Celsius to Fahrenheit calculator.");
-            Console.Write("Provide Celsius value: ");
-            string celsiusValue = Console.ReadLine();
-            celsiusValue = celsiusValue != null && celsiusValue.Contains(".") ? celsiusValue.Replace(".", ",") : celsiusValue;
-            Console.WriteLine($"Fahrenheit: {CalculateCelsiusToFahrenheit(decimal.Parse(celsiusValue ?? throw new InvalidOperationException()))}");
+            Console.WriteLine("Delta calculator.");
+            Console.Write("Provide value a: ");
+            var aValue = StringToDecimalParseAndDotReplace(Console.ReadLine());
+            Console.Write("Provide value b: ");
+            var bValue = StringToDecimalParseAndDotReplace(Console.ReadLine());
+            Console.Write("Provide value c: ");
+            var cValue = StringToDecimalParseAndDotReplace(Console.ReadLine());
+            
+            Console.WriteLine($"Calculated delta: {DeltaCalculator(aValue, bValue, cValue)}");
             Console.ReadKey();
         }
 
-        private static decimal CalculateCelsiusToFahrenheit(decimal celsiusValue)
+        private static double DeltaCalculator(double aValue, double bValue, double cValue)
         {
-            var calculatedFahrenheitValue = (celsiusValue * 9 / 5 ) + 32;
-            return calculatedFahrenheitValue;
+            var calculatedDelta = Math.Pow(bValue, 2) + 4 * aValue * cValue;
+            return calculatedDelta;
+        }
+
+        private static double StringToDecimalParseAndDotReplace(string toConvert)
+        {
+            var dotReplaced = toConvert.Contains(".") ? toConvert.Replace(".", ",") : toConvert;
+            var convertedValue = double.Parse(dotReplaced);
+            return convertedValue;
         }
     }
 }
