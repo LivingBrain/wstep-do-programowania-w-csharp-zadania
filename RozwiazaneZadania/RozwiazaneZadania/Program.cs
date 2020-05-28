@@ -7,24 +7,29 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program przeliczający temperaturę w stopniach Celsjusza na temperaturę w
-             * stopniach Fahrenheita. Program ma prosić użytkownika o podanie temperatury w stopniach
-             * Celsjusza. Wzór: 
-             * F = 32 + (9/5)C
+             * Napisz program, który sprawdza, czy podany rok jest rokiem przestępnym. Rok 
+             * przestępny dzieli się bez reszty przez 4, nie dzieli się przez 100 (za wyjątkiem lat podzielnych 
+             * przez 400).
              */
 
-            Console.WriteLine("Celsius to Fahrenheit calculator.");
-            Console.Write("Provide Celsius value: ");
-            string celsiusValue = Console.ReadLine();
-            celsiusValue = celsiusValue != null && celsiusValue.Contains(".") ? celsiusValue.Replace(".", ",") : celsiusValue;
-            Console.WriteLine($"Fahrenheit: {CalculateCelsiusToFahrenheit(decimal.Parse(celsiusValue ?? throw new InvalidOperationException()))}");
+            Console.WriteLine("Leap year");
+            Console.Write("Provide year value: ");
+            var yearValue = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+            Console.WriteLine($"Is this leap year?: {(CheckIfLeapYear(yearValue) ? "Yes" : "No")}");
+            for (var i = 1900; i <= 2050; i++)
+            {
+                if (CheckIfLeapYear(i))
+                {
+                    Console.WriteLine($"Thi is a leap year: {i}");
+                }
+            }
+
             Console.ReadKey();
         }
 
-        private static decimal CalculateCelsiusToFahrenheit(decimal celsiusValue)
+        private static bool CheckIfLeapYear(int yearValue)
         {
-            var calculatedFahrenheitValue = (celsiusValue * 9 / 5 ) + 32;
-            return calculatedFahrenheitValue;
+            return yearValue % 4 == 0 && !(yearValue % 100 == 0 ^ yearValue % 400 == 0);
         }
     }
 }
