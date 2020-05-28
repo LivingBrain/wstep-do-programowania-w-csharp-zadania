@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RozwiazaneZadania
 {
@@ -7,22 +9,45 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program pobierający od użytkownika dwie liczby całkowite. Program powinien 
-             * wyświetlać informację, czy druga liczba jest dzielnikiem pierwszej.
+             * Napisz program pobierający od użytkownika 3 liczby. Program ma wyświetlić wartość  
+             * największej z nich.
              */
+            var numbersCollection = new List<double>();
 
-            Console.WriteLine("Is divider?");
-            Console.Write("Provide first int value: ");
-            var firstValue = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            Console.Write("Provide second int value: ");
-            var secondValue = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            Console.WriteLine($"Is second number a divider of first number?: {(CheckIfIsDivider(firstValue, secondValue) ? "Yes" : "No")}");
+            Console.WriteLine("Which one is bigger?");
+            Console.Write("Provide first value: ");
+            numbersCollection.Add(double.Parse(Console.ReadLine() ?? throw new InvalidOperationException()));
+            Console.Write("Provide second value: ");
+            numbersCollection.Add(double.Parse(Console.ReadLine() ?? throw new InvalidOperationException()));
+            Console.Write("Provide third value: ");
+            numbersCollection.Add(double.Parse(Console.ReadLine() ?? throw new InvalidOperationException()));
+
+            Console.WriteLine($"And the biggest number is: {GetBiggestNumber(numbersCollection)}");
+            Console.WriteLine($"And the biggest number is: {GetBiggestNumberAlternative(numbersCollection)}");
             Console.ReadKey();
         }
 
-        private static bool CheckIfIsDivider(int firstValue, int secondValue)
+        private static double GetBiggestNumber(List<double> numbersCollection)
         {
-            return firstValue % secondValue == 0;
+            var biggestNumber = numbersCollection[0];
+
+            foreach (var number in numbersCollection)
+            {
+                foreach (var compareToNumber in numbersCollection)
+                {
+                    if (number > compareToNumber && number > biggestNumber)
+                    {
+                        biggestNumber = number;
+                    }
+                }
+            }
+
+            return biggestNumber;
+        }
+
+        private static double GetBiggestNumberAlternative(IEnumerable<double> numbersCollection)
+        {
+            return numbersCollection.OrderByDescending(number => number).ToList()[0];
         }
     }
 }
