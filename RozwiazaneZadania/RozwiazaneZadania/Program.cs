@@ -7,29 +7,22 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program, który sprawdza, czy podany rok jest rokiem przestępnym. Rok 
-             * przestępny dzieli się bez reszty przez 4, nie dzieli się przez 100 (za wyjątkiem lat podzielnych 
-             * przez 400).
+             * Napisz program pobierający od użytkownika dwie liczby całkowite. Program powinien 
+             * wyświetlać informację, czy druga liczba jest dzielnikiem pierwszej.
              */
 
-            Console.WriteLine("Leap year");
-            Console.Write("Provide year value: ");
-            var yearValue = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            Console.WriteLine($"Is this leap year?: {(CheckIfLeapYear(yearValue) ? "Yes" : "No")}");
-            for (var i = 1900; i <= 2050; i++)
-            {
-                if (CheckIfLeapYear(i))
-                {
-                    Console.WriteLine($"Thi is a leap year: {i}");
-                }
-            }
-
+            Console.WriteLine("Is divider?");
+            Console.Write("Provide first int value: ");
+            var firstValue = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+            Console.Write("Provide second int value: ");
+            var secondValue = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+            Console.WriteLine($"Is second number a divider of first number?: {(CheckIfIsDivider(firstValue, secondValue) ? "Yes" : "No")}");
             Console.ReadKey();
         }
 
-        private static bool CheckIfLeapYear(int yearValue)
+        private static bool CheckIfIsDivider(int firstValue, int secondValue)
         {
-            return yearValue % 4 == 0 && !(yearValue % 100 == 0 ^ yearValue % 400 == 0);
+            return firstValue % secondValue == 0;
         }
     }
 }
