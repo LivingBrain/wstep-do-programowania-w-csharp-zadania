@@ -22,7 +22,7 @@ namespace RozwiazaneZadania
             Console.Write("What operation?: ");
             var operationSign = Console.ReadLine();
 
-            Console.WriteLine($"Wquation result: {SimpleCalculator(firstNumber, secondNumber, operationSign):0.0#}");
+            Console.WriteLine($"Equation result: {SimpleCalculator(firstNumber, secondNumber, operationSign):0.0#}");
 
             Console.ReadKey();
         }
