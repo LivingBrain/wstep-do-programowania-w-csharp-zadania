@@ -7,35 +7,18 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program, który oblicza wskaźnik masy ciała BMI. Program ma prosić 
-             * użytkownika o podanie wagi w kilogramach oraz wzrostu w metrach. Wzór: 
-             * BMI = masa / wzrost^2
-             * 
-             * a)Po  obliczeniu  wskaźnika  BMI  program  powinien  wyświetlać  stosowną  informację  w
-             * zależności od wartości wskaźnika:
-             * < 18,5 –niedowaga,
-             * 18,5–24,99 –wartość prawidłowa,
-             * ≥ 25,0 –nadwaga.
-             * 
-             * b)Korzystając  z  Wikipedii  rozszerz  program,  tak  abywyświetlał  komentarz  według
-             * poszerzonej klasyfikacji zakresów wskaźnika BMI.
+             * Pobierz od użytkownika wartość średniej ocen. Program ma wyświetlać informacje o
+             * wysokości przysługującego stypendium zgodnie z poniższą tabelą:
+             * 2,00 3,99 0,00 zł
+             * 4,00 4,79 350,00 zł
+             * 4,80 5,00 550,00 zł
              */
 
-            Console.WriteLine("BMI calculator.");
-            Console.Write("Provide mass value in kg: ");
-            var massValue = StringToDecimalParseAndDotReplace(Console.ReadLine());
-            Console.Write("Provide height value in m: ");
-            var heightValue = StringToDecimalParseAndDotReplace(Console.ReadLine());
-            var bmiValue = BmiCalculator(massValue, heightValue);
-            Console.WriteLine($"Calculated BMI: {bmiValue:0.##}");
-            Console.WriteLine($"BMI indicator: {BmiIndicator(bmiValue)}");
+            Console.WriteLine("Scholarship Amount.");
+            Console.Write("Provide average grade: ");
+            var averageGrade = StringToDecimalParseAndDotReplace(Console.ReadLine());
+            Console.WriteLine($"Scholarship Amount: {ScholarshipAmount(averageGrade)}");
             Console.ReadKey();
-        }
-
-        private static double BmiCalculator(double massValue, double heightValue)
-        {
-            var calculatedBmi = massValue / Math.Pow(heightValue, 2);
-            return calculatedBmi;
         }
 
         private static double StringToDecimalParseAndDotReplace(string toConvert)
@@ -45,43 +28,23 @@ namespace RozwiazaneZadania
             return convertedValue;
         }
 
-        private static string BmiIndicator(double calculatedBmi)
+        private static string ScholarshipAmount(double averageGrade)
         {
-            var indicator = "";
-            if (calculatedBmi < 16.0)
+            var scholarshipAmount = 0;
+            switch (averageGrade)
             {
-                indicator = "Wygłodzenie";
-            }
-            else if (calculatedBmi < 16.99)
-            {
-                indicator = "Wychudzenie";
-            }
-            else if (calculatedBmi < 18.49)
-            {
-                indicator = "Niedowaga";
-            }
-            else if (calculatedBmi < 24.99)
-            {
-                indicator = "Pożądana masa ciała";
-            }
-            else if (calculatedBmi < 29.99)
-            {
-                indicator = "Nadwaga";
-            }
-            else if (calculatedBmi < 34.99)
-            {
-                indicator = "Otyłość I stopnia";
-            }
-            else if (calculatedBmi < 39.99)
-            {
-                indicator = "Otyłość II stopnia (duża)";
-            }
-            else
-            {
-                indicator = "Otyłość III stopnia (chorobliwa)";
+                case var i when i >= 2.0 && i <= 3.99:
+                    scholarshipAmount = 0;
+                    break;
+                case var i when i >= 4.0 && i <= 4.79:
+                    scholarshipAmount = 350;
+                    break;
+                case var i when i >= 4.80 && i <= 5.00:
+                    scholarshipAmount = 550;
+                    break;
             }
 
-            return indicator;
+            return $"{scholarshipAmount:0.##} zł";
         }
     }
 }
