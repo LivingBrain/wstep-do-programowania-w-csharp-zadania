@@ -7,46 +7,46 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz  program – prosty kalkulator, który wczytuje od użytkownika wartości dwóch 
-             * zmiennych typu double oraz znak operacji (+ lub – lub * lub /), a następnie wyświetla wynik 
-             * operacji dla  podanych wartości. Przykładowo użytkownik wprowadził znak „+” i liczby 1,5 
-             * oraz 2,5, program powinien wyświetlić sumę obu liczb, czyli 4,0.
+             * Napisz program obliczający liczbę pierwiastków równania kwadratowego. Program ma 
+             * prosić  użytkownika  o  podanie  współczynników  równania,  a  następnie  ma  wyświetlić 
+             * stosowny komunikat. 
              */
 
 
-            Console.WriteLine("Simple calculator");
-            Console.Write("Provide first number: ");
-            var firstNumber = double.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            Console.Write("Provide second number: ");
-            var secondNumber = double.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            Console.Write("What operation?: ");
-            var operationSign = Console.ReadLine();
+            Console.Write("Provide number a (bigger than zero): ");
+            var aNumber = double.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+            Console.Write("Provide number b: ");
+            var bNumber = double.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+            Console.Write("Provide number c: ");
+            var cNumber = double.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 
-            Console.WriteLine($"Wquation result: {SimpleCalculator(firstNumber, secondNumber, operationSign):0.0#}");
+            var calculatedDelta = DeltaCalculator(aNumber, bNumber, cNumber);
+            Console.WriteLine($"Calculated delta: {calculatedDelta}");
+            if (calculatedDelta > 0)
+            {
+                Console.WriteLine($"Results: {ZeroPlaces(calculatedDelta, aNumber, bNumber)}");
+            }
+            else
+            {
+                Console.WriteLine("Delta is less than zero so no zero places.");
+            }
 
             Console.ReadKey();
         }
 
-        private static double SimpleCalculator(double firstNumber, double secondNumber, string operationSign)
+        private static double DeltaCalculator(double aNumber, double bNumber, double cNumber)
         {
-            double result = 0;
-            switch (operationSign)
-            {
-                case "+":
-                    result = firstNumber + secondNumber;
-                    break;
-                case "-":
-                    result = firstNumber - secondNumber;
-                    break;
-                case "*":
-                    result = firstNumber * secondNumber;
-                    break;
-                case "/":
-                    result = firstNumber / secondNumber;
-                    break;
-            }
+            var calculatedDelta = Math.Pow(bNumber, 2) - 4 * aNumber * cNumber;
+            return calculatedDelta;
+        }
 
-            return result;
+        private static string ZeroPlaces(double delta, double aNumber, double bNumber)
+        {
+            var xOne = (-bNumber - Math.Sqrt(delta)) / (2 * aNumber);
+
+            var xTwo = (-bNumber + Math.Sqrt(delta)) / (2 * aNumber);
+
+            return $"x1: {xOne} and x2: {xTwo}";
         }
     }
 }
