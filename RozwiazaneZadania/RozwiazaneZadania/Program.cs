@@ -7,44 +7,107 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Pobierz od użytkownika wartość średniej ocen. Program ma wyświetlać informacje o
-             * wysokości przysługującego stypendium zgodnie z poniższą tabelą:
-             * 2,00 3,99 0,00 zł
-             * 4,00 4,79 350,00 zł
-             * 4,80 5,00 550,00 zł
+             * Napisz  programw  czterech  wariantach  (a,  b,  c  i  d), którego efektem działania będzie
+             * „figura”utworzonaze znaku gwiazdki (*)przedstawiona na danym rysunku.
+             * (Liczbę wyświetlanych wierszy podaje użytkownik).
+             * a)
+             * *
+             * **
+             * ***
+             * ****
+             * 
+             * b)
+             * ****
+             * ***
+             * **
+             * *
+             * 
+             * c)
+             *    *
+             *   **
+             *  ***
+             * ****
+             * 
+             * d)
+             * ****
+             * *  *
+             * *  *
+             * ****
              */
 
-            Console.WriteLine("Scholarship Amount.");
-            Console.Write("Provide average grade: ");
-            var averageGrade = StringToDecimalParseAndDotReplace(Console.ReadLine());
-            Console.WriteLine($"Scholarship Amount: {ScholarshipAmount(averageGrade)}");
+            Console.WriteLine("Asterisk figure.");
+            Console.Write("How many lines?: ");
+            var lines = int.Parse(Console.ReadLine());
+
+            PrintAsteriskFigure(lines);
+
             Console.ReadKey();
         }
 
-        private static double StringToDecimalParseAndDotReplace(string toConvert)
+        private static void PrintAsteriskFigure(int lines)
         {
-            var dotReplaced = toConvert.Contains(".") ? toConvert.Replace(".", ",") : toConvert;
-            var convertedValue = double.Parse(dotReplaced);
-            return convertedValue;
-        }
-
-        private static string ScholarshipAmount(double averageGrade)
-        {
-            var scholarshipAmount = 0;
-            switch (averageGrade)
+            Console.WriteLine("a)");
+            for (int i = 1; i <= lines; i++)
             {
-                case var i when i >= 2.0 && i <= 3.99:
-                    scholarshipAmount = 0;
-                    break;
-                case var i when i >= 4.0 && i <= 4.79:
-                    scholarshipAmount = 350;
-                    break;
-                case var i when i >= 4.80 && i <= 5.00:
-                    scholarshipAmount = 550;
-                    break;
+                for (int j = 1; j <= i; j++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
             }
-
-            return $"{scholarshipAmount:0.##} zł";
+            Console.WriteLine();
+            Console.WriteLine("b)");
+            for (int i = 1; i <= lines; i++)
+            {
+                for (int j = lines; j >= i; j--)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine("c)");
+            for (int i = 1; i <= lines; i++)
+            {
+                for (int j = 1; j <= lines - i; j++)
+                {
+                    Console.Write(" ");
+                }
+                for (int j = 1; j <= i; j++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine("d)");
+            for (int i = 1; i <= lines; i++)
+            {
+                if (i == 1 || i == lines)
+                {
+                    for (int j = 1; j <= lines; j++)
+                    {
+                        Console.Write("*");
+                    }
+                    Console.WriteLine();
+                }
+                else
+                {
+                    for (int j = 1; j <= lines; j++)
+                    {
+                        if (j == 1 || j == lines)
+                        {
+                            Console.Write("*");
+                        }
+                        else
+                        {
+                            Console.Write(" ");
+                        }
+                    }
+                    Console.WriteLine();
+                }
+            }
+            Console.WriteLine();
         }
     }
 }
