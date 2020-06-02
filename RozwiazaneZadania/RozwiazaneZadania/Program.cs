@@ -7,29 +7,46 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program, który sprawdza, czy podany rok jest rokiem przestępnym. Rok 
-             * przestępny dzieli się bez reszty przez 4, nie dzieli się przez 100 (za wyjątkiem lat podzielnych 
-             * przez 400).
+             * Napisz  program – prosty kalkulator, który wczytuje od użytkownika wartości dwóch 
+             * zmiennych typu double oraz znak operacji (+ lub – lub * lub /), a następnie wyświetla wynik 
+             * operacji dla  podanych wartości. Przykładowo użytkownik wprowadził znak „+” i liczby 1,5 
+             * oraz 2,5, program powinien wyświetlić sumę obu liczb, czyli 4,0.
              */
 
-            Console.WriteLine("Leap year");
-            Console.Write("Provide year value: ");
-            var yearValue = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            Console.WriteLine($"Is this leap year?: {(CheckIfLeapYear(yearValue) ? "Yes" : "No")}");
-            for (var i = 1900; i <= 2050; i++)
-            {
-                if (CheckIfLeapYear(i))
-                {
-                    Console.WriteLine($"Thi is a leap year: {i}");
-                }
-            }
+
+            Console.WriteLine("Simple calculator");
+            Console.Write("Provide first number: ");
+            var firstNumber = double.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+            Console.Write("Provide second number: ");
+            var secondNumber = double.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+            Console.Write("What operation?: ");
+            var operationSign = Console.ReadLine();
+
+            Console.WriteLine($"Wquation result: {SimpleCalculator(firstNumber, secondNumber, operationSign):0.0#}");
 
             Console.ReadKey();
         }
 
-        private static bool CheckIfLeapYear(int yearValue)
+        private static double SimpleCalculator(double firstNumber, double secondNumber, string operationSign)
         {
-            return yearValue % 4 == 0 && !(yearValue % 100 == 0 ^ yearValue % 400 == 0);
+            double result = 0;
+            switch (operationSign)
+            {
+                case "+":
+                    result = firstNumber + secondNumber;
+                    break;
+                case "-":
+                    result = firstNumber - secondNumber;
+                    break;
+                case "*":
+                    result = firstNumber * secondNumber;
+                    break;
+                case "/":
+                    result = firstNumber / secondNumber;
+                    break;
+            }
+
+            return result;
         }
     }
 }
