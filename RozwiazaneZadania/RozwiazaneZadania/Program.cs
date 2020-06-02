@@ -27,7 +27,7 @@ namespace RozwiazaneZadania
 
         private static double DeltaCalculator(double aValue, double bValue, double cValue)
         {
-            var calculatedDelta = Math.Pow(bValue, 2) + 4 * aValue * cValue;
+            var calculatedDelta = Math.Pow(bValue, 2) - 4 * aValue * cValue;
             return calculatedDelta;
         }
 
