@@ -19,7 +19,7 @@ namespace RozwiazaneZadania
             Console.Write("Provide height value in m: ");
             var heightValue = StringToDecimalParseAndDotReplace(Console.ReadLine());
             
-            Console.WriteLine($"Calculated delta: {BmiCalculator(massValue, heightValue):0.##}");
+            Console.WriteLine($"Calculated BMI: {BmiCalculator(massValue, heightValue):0.##}");
             Console.ReadKey();
         }
 
