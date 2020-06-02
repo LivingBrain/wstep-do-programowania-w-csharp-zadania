@@ -38,6 +38,7 @@ namespace RozwiazaneZadania
                     Console.WriteLine("Nie ma takiego dnia tygodnia");
                     break;
             };
+
             Console.ReadKey();
         }     
     }
