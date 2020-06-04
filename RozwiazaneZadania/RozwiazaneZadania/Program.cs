@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RozwiazaneZadania
 {
@@ -42,19 +43,17 @@ namespace RozwiazaneZadania
 
         private static bool CheckIfPerfectNumber(int number)
         {
-            var divisors = new List<int>();
             int divisorsSum = 0;
             for (int i = 1; i < number; i++)
             {
                 if (number % i == 0)
                 {
-                    divisors.Add(i);
+                    divisorsSum += i;
                 }
             }
-            foreach (var divisor in divisors)
-            {
-                divisorsSum += divisor;
-            }
+
+            // alternative solution
+            // divisorsSum = Enumerable.Range(1, number - 1).Where(x => number % x == 0).Sum();
 
             return divisorsSum == number ? true : false;
         }
