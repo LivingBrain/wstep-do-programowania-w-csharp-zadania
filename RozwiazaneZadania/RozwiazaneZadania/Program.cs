@@ -18,24 +18,17 @@ namespace RozwiazaneZadania
             int totalSum = 10;
             Console.WriteLine("10zl all combinations");
 
-            string allCoinsSumString = "";
-            foreach (var coin in allCoins)
-            {
-                allCoinsSumString += $"{coin}+";
-            }
 
             // one coin combination
             foreach (var coin in allCoins)
             {
+                var coinsCombinationList = new List<int>();
+
                 for (int i = 1; i <= totalSum / coin; i++)
                 {
-                    Console.Write(coin);
-                    if (i != totalSum / coin)
-                    {
-                        Console.Write("+");
-                    }
+                    coinsCombinationList.Add(coin);
                 }
-                Console.WriteLine();
+                PrintCoinsList(coinsCombinationList);
             }
 
             // two coins combination
@@ -44,34 +37,46 @@ namespace RozwiazaneZadania
             // three coins combination
             int allCoinsSum = allCoins.Sum();
 
+            var allCoinsSumString = new List<int>();
+            foreach (var coin in allCoins)
+            {
+                allCoinsSumString.Add(coin);
+            }
+
+
             foreach (var coin in allCoins)
             {
                 if (allCoinsSum + coin <= totalSum)
                 {
-                    var tempCoinSum = 0;
-                    var tempCoinSumString = "";
-                    var combinationToPrint = allCoinsSumString;
+                    var coinsCollectionList = new List<int>();
 
                     for (int i = 1; i <= totalSum - allCoinsSum; i++)
                     {
-                        tempCoinSum += coin;
-                        tempCoinSumString += $"{coin}";
+                        coinsCollectionList.Add(coin);
 
-                        if (allCoinsSum + tempCoinSum == totalSum)
+                        if (allCoinsSum + coinsCollectionList.Sum() == totalSum)
                         {
-                            combinationToPrint += tempCoinSumString;
+                            break;
                         } 
-                        else
-                        {
-                            tempCoinSumString += "+";
-                        }
-
                     }
-                    Console.WriteLine(combinationToPrint);
+                    PrintCoinsList(allCoinsSumString.Concat(coinsCollectionList).ToList());
                 }
             }
 
             Console.ReadKey();
-        }               
+        }           
+        
+        private static void PrintCoinsList(IList<int> coinsList)
+        {
+            for (int i = 0; i < coinsList.Count; i++)
+            {
+                Console.Write(coinsList[i]);
+                if (i < coinsList.Count - 1)
+                {
+                    Console.Write("+");
+                }
+            }
+            Console.WriteLine();
+        }
     }
 }
