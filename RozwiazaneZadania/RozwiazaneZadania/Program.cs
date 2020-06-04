@@ -7,107 +7,32 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz  programw  czterech  wariantach  (a,  b,  c  i  d), którego efektem działania będzie
-             * „figura”utworzonaze znaku gwiazdki (*)przedstawiona na danym rysunku.
-             * (Liczbę wyświetlanych wierszy podaje użytkownik).
-             * a)
-             * *
-             * **
-             * ***
-             * ****
-             * 
-             * b)
-             * ****
-             * ***
-             * **
-             * *
-             * 
-             * c)
-             *    *
-             *   **
-             *  ***
-             * ****
-             * 
-             * d)
-             * ****
-             * *  *
-             * *  *
-             * ****
+             * Napisz program obliczający n! (nsilnia), gdzie njest podane przez użytkownika.
              */
 
-            Console.WriteLine("Asterisk figure.");
-            Console.Write("How many lines?: ");
-            var lines = int.Parse(Console.ReadLine());
+            Console.WriteLine("Factorial.");
+            Console.Write("Provide natural number n: ");
+            var nNumber = int.Parse(Console.ReadLine());
 
-            PrintAsteriskFigure(lines);
+            Console.WriteLine($"Calculated factorial number is: {CalculateFactorialNumber(nNumber)}");
+            
 
             Console.ReadKey();
         }
 
-        private static void PrintAsteriskFigure(int lines)
+        private static int CalculateFactorialNumber(int nNumber)
         {
-            Console.WriteLine("a)");
-            for (int i = 1; i <= lines; i++)
+            return nNumber == 0 ? 1 : NFactorial(nNumber);
+        }
+
+        private static int NFactorial(int nNumber)
+        {
+            var calculatedFactorial = 1;
+            for (int i = 1; i <= nNumber; i++)
             {
-                for (int j = 1; j <= i; j++)
-                {
-                    Console.Write("*");
-                }
-                Console.WriteLine();
+                calculatedFactorial *= i;
             }
-            Console.WriteLine();
-            Console.WriteLine("b)");
-            for (int i = 1; i <= lines; i++)
-            {
-                for (int j = lines; j >= i; j--)
-                {
-                    Console.Write("*");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-            Console.WriteLine("c)");
-            for (int i = 1; i <= lines; i++)
-            {
-                for (int j = 1; j <= lines - i; j++)
-                {
-                    Console.Write(" ");
-                }
-                for (int j = 1; j <= i; j++)
-                {
-                    Console.Write("*");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-            Console.WriteLine("d)");
-            for (int i = 1; i <= lines; i++)
-            {
-                if (i == 1 || i == lines)
-                {
-                    for (int j = 1; j <= lines; j++)
-                    {
-                        Console.Write("*");
-                    }
-                    Console.WriteLine();
-                }
-                else
-                {
-                    for (int j = 1; j <= lines; j++)
-                    {
-                        if (j == 1 || j == lines)
-                        {
-                            Console.Write("*");
-                        }
-                        else
-                        {
-                            Console.Write(" ");
-                        }
-                    }
-                    Console.WriteLine();
-                }
-            }
-            Console.WriteLine();
+            return calculatedFactorial;
         }
     }
 }
