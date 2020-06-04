@@ -9,53 +9,69 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Liczba Njest doskonała,gdy jest równa sumie swych podzielników mniejszych od niej 
-             * samej np. 6=1+2+3=6 –jest liczbą doskonałą. Napisz program znajdujący liczby doskonałe w
-             * przedziale <1,n>, gdzie npodaje użytkownik.
+             * Dysponując  monetami  1  zł,  2  zł,  5  zł  sprawdź,na  ile  różnych  sposobów  można 
+             * wypłacić  10  zł.  Napisz  program,  który  wyświetli  w  oknie  konsoli  wszystkie  możliwe
+             * kombinacje.
              */
 
-            Console.WriteLine("Find perfect numbers in <1,n>.");
-            Console.Write("Provide natural number n: ");
-            var userNumber = int.Parse(Console.ReadLine());
-            
-            Console.WriteLine("Perfect numbers:");
-            PrintSetOfPerfectNumbers(userNumber);
+            IList<int> allCoins = new List<int>() { 1, 2, 5 };
+            int totalSum = 10;
+            Console.WriteLine("10zl all combinations");
+
+            string allCoinsSumString = "";
+            foreach (var coin in allCoins)
+            {
+                allCoinsSumString += $"{coin}+";
+            }
+
+            // one coin combination
+            foreach (var coin in allCoins)
+            {
+                for (int i = 1; i <= totalSum / coin; i++)
+                {
+                    Console.Write(coin);
+                    if (i != totalSum / coin)
+                    {
+                        Console.Write("+");
+                    }
+                }
+                Console.WriteLine();
+            }
+
+            // two coins combination
+
+
+            // three coins combination
+            int allCoinsSum = allCoins.Sum();
+
+            foreach (var coin in allCoins)
+            {
+                if (allCoinsSum + coin <= totalSum)
+                {
+                    var tempCoinSum = 0;
+                    var tempCoinSumString = "";
+                    var combinationToPrint = allCoinsSumString;
+
+                    for (int i = 1; i <= totalSum - allCoinsSum; i++)
+                    {
+                        tempCoinSum += coin;
+                        tempCoinSumString += $"{coin}";
+
+                        if (allCoinsSum + tempCoinSum == totalSum)
+                        {
+                            combinationToPrint += tempCoinSumString;
+                        } 
+                        else
+                        {
+                            tempCoinSumString += "+";
+                        }
+
+                    }
+                    Console.WriteLine(combinationToPrint);
+                }
+            }
+
             Console.ReadKey();
-        }       
-        
-
-        private static void PrintSetOfPerfectNumbers(int maxNumber)
-        {
-            var counter = 0;
-            for (int i = 1; i <= maxNumber; i++)
-            {
-                if (CheckIfPerfectNumber(i))
-                {
-                    Console.WriteLine(i);
-                    counter++;
-                }
-            }
-            if (counter == 0)
-            {
-                Console.WriteLine("No perfect numbers in this set.");
-            }
-        }
-
-        private static bool CheckIfPerfectNumber(int number)
-        {
-            int divisorsSum = 0;
-            for (int i = 1; i < number; i++)
-            {
-                if (number % i == 0)
-                {
-                    divisorsSum += i;
-                }
-            }
-
-            // alternative solution
-            // divisorsSum = Enumerable.Range(1, number - 1).Where(x => number % x == 0).Sum();
-
-            return divisorsSum == number ? true : false;
-        }
+        }               
     }
 }
