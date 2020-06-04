@@ -23,11 +23,11 @@ namespace RozwiazaneZadania
             foreach (var coin in allCoins)
             {
                 var coinsCombinationList = new List<int>();
-
                 for (int i = 1; i <= totalSum / coin; i++)
                 {
                     coinsCombinationList.Add(coin);
                 }
+
                 PrintCoinsList(coinsCombinationList);
             }
 
@@ -46,21 +46,16 @@ namespace RozwiazaneZadania
 
             foreach (var coin in allCoins)
             {
-                if (allCoinsSum + coin <= totalSum)
+                if (allCoinsSum + coin > totalSum) continue;
+
+                var coinsCollectionList = new List<int>();
+                for (int i = 1; i <= totalSum - allCoinsSum; i++)
                 {
-                    var coinsCollectionList = new List<int>();
-
-                    for (int i = 1; i <= totalSum - allCoinsSum; i++)
-                    {
-                        coinsCollectionList.Add(coin);
-
-                        if (allCoinsSum + coinsCollectionList.Sum() == totalSum)
-                        {
-                            break;
-                        } 
-                    }
-                    PrintCoinsList(allCoinsSumString.Concat(coinsCollectionList).ToList());
+                    coinsCollectionList.Add(coin);
+                    if (allCoinsSum + coinsCollectionList.Sum() == totalSum) break;
                 }
+
+                PrintCoinsList(allCoinsSumString.Concat(coinsCollectionList).OrderByDescending(n => n).ToList());
             }
 
             Console.ReadKey();
