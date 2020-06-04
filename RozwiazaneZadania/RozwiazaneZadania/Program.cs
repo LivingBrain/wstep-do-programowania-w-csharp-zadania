@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RozwiazaneZadania
 {
@@ -7,28 +8,24 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program obliczający ile kolejnych liczb całkowitych (rozpoczynając od wartości
-             * 1) należy dodać do siebie, aby suma przekroczyła wartość 100.
+             * Napisz program pobierający od użytkownika liczby całkowite. Program ma pobierać te 
+             * iczby do czasu, gdy użytkownik wprowadzi wartość 0 (zero). Wynikiem działania programu
+             * ma być informacja o sumie wprowadzonych przez użytkownika liczb.
              */
 
-            Console.WriteLine("Sum to 100 or any other number.");
-            Console.Write("Provide natural number: ");
-            var sumNumber = int.Parse(Console.ReadLine());
-
-            Console.WriteLine($"How many natural numbers need to be sum to get more than provided number?: {HowManyNumberToGetSum(sumNumber)}");
+            Console.WriteLine("Add number until 0.");
+            int userNumber;
+            int numbersSum = 0;
+            do
+            {
+                Console.Write("Provide natural number: ");
+                userNumber = int.Parse(Console.ReadLine());
+                numbersSum += userNumber;
+            } while (userNumber != 0);
+            
+            Console.WriteLine($"The sum of provided numbers is: {numbersSum}");
             
             Console.ReadKey();
-        }
-
-        private static int HowManyNumberToGetSum(int sumNumber)
-        {
-            var calculatedSum = 0;
-            for (int i = 1; i < sumNumber; i++)
-            {
-                calculatedSum += i;
-                if (calculatedSum > sumNumber) return i;
-            }
-            return 0;
-        }
+        }        
     }
 }
