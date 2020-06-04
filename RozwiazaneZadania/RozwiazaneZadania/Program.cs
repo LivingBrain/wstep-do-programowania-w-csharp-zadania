@@ -8,24 +8,34 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program pobierający od użytkownika liczby całkowite. Program ma pobierać te 
-             * iczby do czasu, gdy użytkownik wprowadzi wartość 0 (zero). Wynikiem działania programu
-             * ma być informacja o sumie wprowadzonych przez użytkownika liczb.
+             * Napisz program obliczający sumę szeregu W(n)=1 –2  +  3 –4  +  ...±n,  gdzie njest 
+             * dowolną liczbą naturalną, którą program ma wczytać.
              */
 
-            Console.WriteLine("Add number until 0.");
-            int userNumber;
-            int numbersSum = 0;
-            do
-            {
-                Console.Write("Provide natural number: ");
-                userNumber = int.Parse(Console.ReadLine());
-                numbersSum += userNumber;
-            } while (userNumber != 0);
+            Console.WriteLine("Numerical sequence.");
+            Console.Write("Provide natural number: ");
+            var userNumber = int.Parse(Console.ReadLine());
             
-            Console.WriteLine($"The sum of provided numbers is: {numbersSum}");
+            Console.WriteLine($"Calculated value for numerical sequence is: {CalculateNumericalSequence(userNumber)}");
             
             Console.ReadKey();
         }        
+
+        private static int CalculateNumericalSequence(int userNumber)
+        {
+            int calculatedSequence = 0;
+            for (int i = 1; i <= userNumber; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    calculatedSequence -= i;
+                }
+                else
+                {
+                    calculatedSequence += i;
+                }
+            }
+            return calculatedSequence;
+        }
     }
 }
