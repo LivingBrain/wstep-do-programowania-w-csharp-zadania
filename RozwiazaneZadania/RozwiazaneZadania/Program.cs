@@ -7,32 +7,28 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program obliczający n! (nsilnia), gdzie njest podane przez użytkownika.
+             * Napisz program obliczający ile kolejnych liczb całkowitych (rozpoczynając od wartości
+             * 1) należy dodać do siebie, aby suma przekroczyła wartość 100.
              */
 
-            Console.WriteLine("Factorial.");
-            Console.Write("Provide natural number n: ");
-            var nNumber = int.Parse(Console.ReadLine());
+            Console.WriteLine("Sum to 100 or any other number.");
+            Console.Write("Provide natural number: ");
+            var sumNumber = int.Parse(Console.ReadLine());
 
-            Console.WriteLine($"Calculated factorial number is: {CalculateFactorialNumber(nNumber)}");
+            Console.WriteLine($"How many natural numbers need to be sum to get more than provided number?: {HowManyNumberToGetSum(sumNumber)}");
             
-
             Console.ReadKey();
         }
 
-        private static int CalculateFactorialNumber(int nNumber)
+        private static int HowManyNumberToGetSum(int sumNumber)
         {
-            return nNumber == 0 ? 1 : NFactorial(nNumber);
-        }
-
-        private static int NFactorial(int nNumber)
-        {
-            var calculatedFactorial = 1;
-            for (int i = 1; i <= nNumber; i++)
+            var calculatedSum = 0;
+            for (int i = 1; i < sumNumber; i++)
             {
-                calculatedFactorial *= i;
+                calculatedSum += i;
+                if (calculatedSum > sumNumber) return i;
             }
-            return calculatedFactorial;
+            return 0;
         }
     }
 }
