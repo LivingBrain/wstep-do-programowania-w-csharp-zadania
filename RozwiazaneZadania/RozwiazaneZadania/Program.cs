@@ -31,8 +31,37 @@ namespace RozwiazaneZadania
                 PrintCoinsList(coinsCombinationList);
             }
 
+            var coinPairsList = new List<int>();
             // two coins combination
+            foreach (var coin in allCoins)
+            {
+                foreach (var secondCoin in allCoins)
+                {
+                    if (coin != secondCoin && !coinPairsList.Contains(coin + secondCoin))
+                    {
+                        coinPairsList.Add(coin + secondCoin);
 
+                        var firstCoinCollectionList = new List<int>();
+                        for (int i = 1; i < totalSum; i++)
+                        {
+                            var secondCoinCollectionList = new List<int>();
+                            firstCoinCollectionList.Add(coin);
+                            for (int j = 1; j <= totalSum - firstCoinCollectionList.Sum(); j++)
+                            {
+                                secondCoinCollectionList.Add(secondCoin);
+                                if (firstCoinCollectionList.Sum() + secondCoinCollectionList.Sum() == totalSum)
+                                {
+                                    PrintCoinsList(firstCoinCollectionList.Concat(secondCoinCollectionList).OrderByDescending(n => n).ToList());
+                                    break;
+                                }
+                                else if (firstCoinCollectionList.Sum() + secondCoinCollectionList.Sum() > totalSum) {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             // three coins combination
             int allCoinsSum = allCoins.Sum();
@@ -42,7 +71,6 @@ namespace RozwiazaneZadania
             {
                 allCoinsSumString.Add(coin);
             }
-
 
             foreach (var coin in allCoins)
             {
