@@ -14,6 +14,7 @@ namespace RozwiazaneZadania
              * kombinacje.
              */
 
+            // This will work only for 3 coins. But coins can be changed in range <1,n> where n is totalSum.
             IList<int> allCoins = new List<int>() { 1, 2, 5 };
             int totalSum = 10;
             Console.WriteLine("10zl all combinations");
@@ -26,9 +27,11 @@ namespace RozwiazaneZadania
                 for (int i = 1; i <= totalSum / coin; i++)
                 {
                     coinsCombinationList.Add(coin);
+                    if (coinsCombinationList.Sum() == totalSum)
+                    {
+                        PrintCoinsList(coinsCombinationList);
+                    }
                 }
-
-                PrintCoinsList(coinsCombinationList);
             }
 
             var coinPairsList = new List<int>();
