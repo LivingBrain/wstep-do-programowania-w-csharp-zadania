@@ -7,29 +7,35 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program, który sprawdza, czy podany rok jest rokiem przestępnym. Rok 
-             * przestępny dzieli się bez reszty przez 4, nie dzieli się przez 100 (za wyjątkiem lat podzielnych 
-             * przez 400).
+             * Napisz program, który pozwoli zapełnić n–elementową tablicęjednowymiarowąliczb
+             * całkowitych  wartościami  podanymi  przez  użytkownika.  Na  początku  działania  programu
+             * użytkownik  podaje  liczbę  elementów  tablicy,  a  następnie  poszczególne  wartości  jej 
+             * elementów. Po wypełnieniu całej tablicy program powinien wypisać je w oknie konsoli.
              */
 
-            Console.WriteLine("Leap year");
-            Console.Write("Provide year value: ");
-            var yearValue = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            Console.WriteLine($"Is this leap year?: {(CheckIfLeapYear(yearValue) ? "Yes" : "No")}");
-            for (var i = 1900; i <= 2050; i++)
+            Console.WriteLine("One dimension table.");
+            Console.Write("How many elements in table?: ");
+            var tableElements = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+            var intTable = new int[tableElements];
+            for (int i = 0; i < intTable.Length; i++)
             {
-                if (CheckIfLeapYear(i))
-                {
-                    Console.WriteLine($"Thi is a leap year: {i}");
-                }
+                Console.Write($"Provide table element no {i+1}: ");
+                intTable[i] = int.Parse(Console.ReadLine());
             }
+            PrintaTable(intTable);
 
             Console.ReadKey();
         }
 
-        private static bool CheckIfLeapYear(int yearValue)
+        private static void PrintaTable(int[] table)
         {
-            return yearValue % 4 == 0 && !(yearValue % 100 == 0 ^ yearValue % 400 == 0);
+            Console.WriteLine("Table begin.");
+            foreach (var item in table)
+            {
+                
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("Table end.");
         }
     }
 }
