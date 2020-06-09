@@ -7,24 +7,34 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program, który pozwoli zapełnić n–elementową tablicęjednowymiarowąliczb
-             * całkowitych  wartościami  podanymi  przez  użytkownika.  Na  początku  działania  programu
-             * użytkownik  podaje  liczbę  elementów  tablicy,  a  następnie  poszczególne  wartości  jej 
-             * elementów. Po wypełnieniu całej tablicy program powinien wypisać je w oknie konsoli.
+             * Napisz program kopiujący z danej tablicy liczb całkowitych tab1 do nowej tablicy tab2
+             * wyłącznie wartości dodatnie.Obie tablice mają być jednowymiarowe o rozmiarze równym 10
+             * (czyli  10-elemetowe).  Elementy  pierwszej  tablicy  (tab1) należy wpisać w trakcie deklaracji  
+             * tej tablicy.
              */
 
-            Console.WriteLine("One dimension table.");
-            Console.Write("How many elements in table?: ");
-            var tableElements = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            var intTable = new int[tableElements];
-            for (int i = 0; i < intTable.Length; i++)
+            Console.WriteLine("Comy positive numbers to table 2.");
+            var firstTable = new int[10];
+            var secondTable = new int[10];
+            
+            for (int i = 0; i < firstTable.Length; i++)
             {
-                Console.Write($"Provide table element no {i+1}: ");
-                intTable[i] = int.Parse(Console.ReadLine());
+                Console.Write($"Provide number for table element no {i+1}: ");
+                firstTable[i] = int.Parse(Console.ReadLine());
             }
-            PrintaTable(intTable);
+            PrintaTable(CopyPositiveNumbersToSecondTable(firstTable, secondTable));
 
             Console.ReadKey();
+        }
+
+        private static int[] CopyPositiveNumbersToSecondTable(int[] firstTable, int[] secondTable)
+        {
+            var tableIndex = 0;
+            foreach (var element in firstTable)
+            {
+                if (element > 0) secondTable[tableIndex++] = element;
+            }
+            return secondTable;
         }
 
         private static void PrintaTable(int[] table)
@@ -32,7 +42,6 @@ namespace RozwiazaneZadania
             Console.WriteLine("Table begin.");
             foreach (var item in table)
             {
-                
                 Console.WriteLine(item);
             }
             Console.WriteLine("Table end.");
