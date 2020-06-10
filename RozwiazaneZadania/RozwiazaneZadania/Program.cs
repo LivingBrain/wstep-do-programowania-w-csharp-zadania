@@ -7,88 +7,48 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program wyświetlający informacje o wypełnionej przez użytkownika tablicy n-
-             * elementowej:
-             * wartość i numer pozycjinajwiększego elementu,
-             * wartość i numer pozycjinajmniejszego elementu
-             * średnia wartości wszystkich elementów tablicy
-             * liczba dodatnich elementów tablicy.
+             * Napisz program, który podaje,ile jest liczb pierwszych w tablicy 100 elementowejtypu 
+             * int.Tablicę  należy  wypełnić  losowymi  wartościami. Wskazówka:  Poniższy  fragment
+             * programu pokazuje działanie klasy Random(która zawiera generator liczb pseudolosowych) –
+             * w pętli zostanie wyświetlonych100  liczbwybranych  losowo z  zakresu  1 –999(o  zakresie
+             * decydują argumenty podane w wywołaniu metody Next()). 
              */
 
-            Console.WriteLine("Table info.");
-            Console.Write("How big table?: ");
-            var table = new int[int.Parse(Console.ReadLine())];
+            Random random = new Random();
+
+            Console.WriteLine("Table prime number.");
+            var table = new int[100];
             
             for (int i = 0; i < table.Length; i++)
             {
-                Console.Write($"Provide number for table element no {i+1}: ");
-                table[i] = int.Parse(Console.ReadLine());
+                table[i] = random.Next(1, 999);
             }
 
-            Console.WriteLine(GetValueAndPositionOfBiggestElementInTable(table));
-            Console.WriteLine(GetValueAndPositionOfSmalestElementInTable(table));
-            Console.WriteLine(GetAverageOfAllTableElements(table));
-            Console.WriteLine(GetPositiveTableElementsCount(table));
+            Console.WriteLine($"Number of prime numbers in table: {TablePrimeNumberCount(table)}");
 
             Console.ReadKey();
         }
-
-        private static string GetValueAndPositionOfBiggestElementInTable(int[] table)
+        
+        private static int TablePrimeNumberCount(int[] table)
         {
-            var biggestElementValue = 0;
-            var biggestElementPosition = 0;
-
-            for (int i = 0; i < table.Length; i++)
+            var primeNumberCounter = 0;
+            foreach (var number in table)
             {
-                if (table[i] >= biggestElementValue)
+                var divisionWithRest = 0;
+
+                for (int i = 2; i < number; i++)
                 {
-                    biggestElementValue = table[i];
-                    biggestElementPosition = i + 1;
+                    if (number % i != 0) divisionWithRest++;
+                }
+
+                if (divisionWithRest == number - 2)
+                {
+                    primeNumberCounter++;
+                    Console.WriteLine(number);
                 }
             }
 
-            return $"Table biggest number {biggestElementValue} at postion {biggestElementPosition}";
+            return primeNumberCounter;
         }
-
-        private static string GetValueAndPositionOfSmalestElementInTable(int[] table)
-        {
-            var smalestElementValue = 0;
-            var smalestElementPosition = 0;
-
-            for (int i = 0; i < table.Length; i++)
-            {
-                if (table[i] <= smalestElementValue)
-                {
-                    smalestElementValue = table[i];
-                    smalestElementPosition = i + 1;
-                }
-            }
-
-            return $"Table biggest number {smalestElementValue} at postion {smalestElementPosition}";
-        }
-
-        private static string GetAverageOfAllTableElements(int[] table)
-        {
-            var sum = 0;
-            foreach (var element in table)
-            {
-                sum += element;
-            }
-            decimal average = (decimal)sum / table.Length;
-
-            return $"Table elements averege is: {average}";
-        }
-
-        private static string GetPositiveTableElementsCount(int[] table)
-        {
-            var counter = 0;
-            foreach (var element in table)
-            {
-                if (element > 0) counter++;
-            }
-
-            return $"Table contains {counter} positive elements.";
-        }
-
     }
 }
