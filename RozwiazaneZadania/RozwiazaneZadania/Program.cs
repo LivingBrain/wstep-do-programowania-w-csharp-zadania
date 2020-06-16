@@ -7,51 +7,67 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Dana  jest n-elementowa  tablica  liczb  całkowitych tab1.  Napisz  program  kopiujący 
-             * wartości elementów tablicy tab1do tablicy tab2(o tym samym rozmiarze) z przesunięciem o 
-             * jedną pozycje. To znaczy, że element w tablicy źródłowej o indeksie 0 powinien znaleźć się w 
-             * tablicy  docelowej  pod  indeksem  1,  element  o  indeksie 1 ma być w tablicy docelowej pod 
-             * indeksem 2 itd. Element ostatni tablicy źródłowej ma być elementem o  indeksie  0 w  tablicy
-             * docelowej.
+             * Napisz  program,  który deklaruje  i  inicjalizuje  dwuwymiarową  tablicę liczb
+             * rzeczywistych o  rozmiarze 5 x 5. Program  ma  wyświetlić  elementy  tablicy  (wiersz  po 
+             * wierszu),  a  następnie wyświetlić  sumę elementów  znajdujących  się  na  głównej  przekątnej 
+             * tablicy(główna przekątna – od elementu o indeksach 0,0 do elementu o indeksach n,n)
              */
 
             Random random = new Random();
 
-            Console.WriteLine("Copy table and move values by one position.");
-            int[] table = new int[10];
+            Console.WriteLine("Two dimension table.");
+            var table = new int[5, 5];
 
-            for (int i = 0; i < table.Length; i++)
+
+            for (int i = 0; i < table.GetLength(0); i++)
             {
-                table[i] = random.Next(1, 99);
+                for (int j = 0; j < table.GetLength(1); j++)
+                {
+                    table[i, j] = random.Next(1, 99);
+                }
             }
 
             Console.WriteLine($"Generated table values: ");
-            PrintaTable(table);
-            Console.WriteLine($"Copied table values: ");
-            PrintaTable(CopyTable(table));
-
+            PrintaTwoDimensionTable(table);
+            Console.WriteLine($"Calculated sum: {SumValues(table)}");
 
             Console.ReadKey();
         }
 
-        public static int[] CopyTable(int[] table)
+        public static int SumValues(int[,] table)
         {
-            int[] secondTable = new int[table.Length];
+            int sum = 0;
 
-            secondTable[0] = table[table.Length - 1];
-            Array.Copy(table, 0, secondTable, 1, table.Length - 1);
+            for (int i = 0; i < table.GetLength(0); i++)
+            {
+                sum += table[i, i];
+            }
 
-            return secondTable;
+            return sum;
         }
 
 
-        private static void PrintaTable(int[] table)
+        private static void PrintaTwoDimensionTable(int[,] table)
         {
-            foreach (var item in table)
+            for (int i = 0; i < table.GetLength(0); i++)
             {
-                Console.Write($"{item} ");
+                for (int j = 0; j < table.GetLength(1); j++)
+                {
+                    if (i == j)
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                    } else
+                    {
+                        Console.ResetColor();
+                    }
+                    Console.Write("{0, 4}", table[i, j]);
+
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
+
+            Console.ResetColor();
         }
     }
 }
