@@ -7,67 +7,57 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program, który dodaje dwie macierze o rozmiarze 2 x 3. Elementy macierzy 
-             * należy umieścićw tablicach dwuwymiarowych w trakcie deklaracji. Program ma wyświetlić
-             * macierz  wynikową.  Wskazówka:  Dodawanie  macierzy –macierz  wynikowa C zawiera 
-             * elementy,  które stanowią sumę elementów macierzy A  i  B o  odpowiednich  indeksach,  tzn.
-             * element  w  zerowym  wierszu  i  zerowej  kolumnie  macierzy  A  jest  dodawany  do  elementu  o
-             * tych samych indeksach macierzy B, element A [0,1]do B [0,1]...itd.
+             * Uzupełnij poniższy kod programu o wszystkie dni tygodnia iprzy użyciu pętliwyświetl 
+             * zawartość  tablicy:  w  każdym  wierszu  dany  dzień  tygodnia  w  trzech  językach  (polskim,
+             * angielskim, niemieckim).  
+             * string[,] dniTygodnia;
+             * dniTygodnia = new string[2, 3];// pamiętaj o zmianie rozmiaru tablicy
+             * dniTygodnia[0, 0] = "poniedzialek";
+             * dniTygodnia[1, 0] = "wtorek";
+             * dniTygodnia[0, 1] = "monday";
+             * dniTygodnia[1, 1] = "tuesday";
+             * dniTygodnia[0, 2] = "montag";
+             * dniTygodnia[1, 2] = "dienstag";
              */
 
-            var random = new Random();
-            var xDimension = 2;
-            var yDimension = 3;
+            string[,] dniTygodnia;
+            dniTygodnia = new string[7, 3];
+            dniTygodnia[0, 0] = "poniedzialek";
+            dniTygodnia[1, 0] = "wtorek";
+            dniTygodnia[2, 0] = "środa";
+            dniTygodnia[3, 0] = "czwartek";
+            dniTygodnia[4, 0] = "piątek";
+            dniTygodnia[5, 0] = "sobota";
+            dniTygodnia[6, 0] = "niedziela";
 
-            var firstMatrix = GenerateMatrix(random, xDimension, yDimension);
-            var secondMatrix = GenerateMatrix(random, xDimension, yDimension);
+            dniTygodnia[0, 1] = "monday";
+            dniTygodnia[1, 1] = "tuesday";
+            dniTygodnia[2, 1] = "wednesday";
+            dniTygodnia[3, 1] = "thursday";
+            dniTygodnia[4, 1] = "friday";
+            dniTygodnia[5, 1] = "saturday";
+            dniTygodnia[6, 1] = "sunday";
 
-            Console.WriteLine("First matrix");
-            PrintaTwoDimensionTable(firstMatrix);
-            Console.WriteLine("Second matrix");
-            PrintaTwoDimensionTable(secondMatrix);
-            Console.WriteLine();
-            Console.WriteLine("Sum of two matrices");
-            PrintaTwoDimensionTable(AddTwoMatrices(firstMatrix, secondMatrix));
+            dniTygodnia[0, 2] = "montag";
+            dniTygodnia[1, 2] = "dienstag";
+            dniTygodnia[2, 2] = "mittwoch";
+            dniTygodnia[3, 2] = "donnerstag";
+            dniTygodnia[4, 2] = "freitag";
+            dniTygodnia[5, 2] = "samstag";
+            dniTygodnia[6, 2] = "sonntag";
+
+            PrintaTwoDimensionTable(dniTygodnia);
 
             Console.ReadKey();
         }
 
-        public static int[,] AddTwoMatrices(int[,] firstMatrix, int[,] secondMatrix)
-        {
-            var thirdMatrix = new int[firstMatrix.GetLength(0), firstMatrix.GetLength(1)];
-            for (int i = 0; i < thirdMatrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < thirdMatrix.GetLength(1); j++)
-                {
-                    thirdMatrix[i, j] = firstMatrix[i, j] + secondMatrix[i, j];
-                }
-            }
-
-            return thirdMatrix;
-        }
-
-        private static int[,] GenerateMatrix(Random random, int xDimension, int yDimension)
-        {
-            var table = new int[xDimension, yDimension];
-            for (int i = 0; i < table.GetLength(0); i++)
-            {
-                for (int j = 0; j < table.GetLength(1); j++)
-                {
-                    table[i, j] = random.Next(1, 100);
-                }
-            }
-
-            return table;
-        }
-
-        private static void PrintaTwoDimensionTable(int[,] table)
+        private static void PrintaTwoDimensionTable(string[,] table)
         {
             for (int i = 0; i < table.GetLength(0); i++)
             {
                 for (int j = 0; j < table.GetLength(1); j++)
                 {
-                    Console.Write("{0, 4}", table[i, j]);
+                    Console.Write("{0, 12}", table[i, j]);
                 }
                 Console.WriteLine();
             }
