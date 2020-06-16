@@ -28,12 +28,12 @@ namespace RozwiazaneZadania
             PrintaTwoDimensionTable(secondMatrix);
             Console.WriteLine();
             Console.WriteLine("Sum of two matrices");
-            PrintaTwoDimensionTable(AddTwoMatrixs(firstMatrix, secondMatrix));
+            PrintaTwoDimensionTable(AddTwoMatrices(firstMatrix, secondMatrix));
 
             Console.ReadKey();
         }
 
-        public static int[,] AddTwoMatrixs(int[,] firstMatrix, int[,] secondMatrix)
+        public static int[,] AddTwoMatrices(int[,] firstMatrix, int[,] secondMatrix)
         {
             var thirdMatrix = new int[firstMatrix.GetLength(0), firstMatrix.GetLength(1)];
             for (int i = 0; i < thirdMatrix.GetLength(0); i++)
