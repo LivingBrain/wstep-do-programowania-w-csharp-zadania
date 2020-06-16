@@ -7,12 +7,12 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program obliczający liczbę wyrazów w łańcuchu znaków wprowadzonym przez 
-             * użytkownika. Należy przyjąć, że wyrazy to ciągi znaków rozdzielone spacją.
+             * Napisać program, który pobierze datę w formacie DD-MM-RRRR, z której pobierze
+             * miesiąci wyświetli jego nazwę słownie.
              */
 
-            Console.Write("Write sentence: ");
-            Console.WriteLine($"Counted words: {Console.ReadLine().Split(' ').Length}");
+            Console.Write("Write date like DD-MM-RRRR: ");
+            Console.WriteLine($"Month: {DateTime.Parse(Console.ReadLine()).ToString("MMMM")}");
             Console.ReadKey();
         }        
     }
