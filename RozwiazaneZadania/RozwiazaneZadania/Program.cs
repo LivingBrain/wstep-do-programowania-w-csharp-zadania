@@ -8,40 +8,40 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz  program  analizujący  częstość  występowania  poszczególnych  znaków  w
-             * łańcuchu  znaków  wprowadzonym  przez  użytkownika.Np.   dla   wprowadzonego   tekstu
-             * „abrakadabra” program powinien wyświetlić informacje: a – 5, b – 2, r – 2, k – 1, d – 1.
+             * Napisz  program,  który  dla  zadeklarowanej  niżej  zmiennej  łańcuchowej  wyświetli  jej
+             * zawartość, poda liczbę wierszy oraz poda liczbę znaków w każdym wierszu.
+             * // fragment powieści A. A.Milne, "KubuśPuchatek"
+             * string tekst = "W parę godzin później, gdy noc zbierała siędo odejścia,\n" +
+             * "Puchatek obudził się nagle z uczuciem dziwnego przygnębienia.\n" +
+             * "To uczucie dziwnego przygnębienia miewał już nieraz i wiedział,\n" +
+             * "co ono oznacza. Był głodny. Więc poszedł do spiżarni,\n" +
+             * "wgramolił się na krzesełko, sięgnął na górną półkę, ale nic nie znalazł.";
              */
 
-            Console.Write("Write something: ");
-            var someText = Console.ReadLine();
+            string tekst = "W parę godzin później, gdy noc zbierała się do odejścia,\n" +
+                "Puchatek obudził się nagle z uczuciem dziwnego przygnębienia.\n" +
+                "To uczucie dziwnego przygnębienia miewał już nieraz i wiedział,\n" +
+                "co ono oznacza. Był głodny. Więc poszedł do spiżarni,\n" +
+                "wgramolił się na krzesełko, sięgnął na górną półkę, ale nic nie znalazł.";
 
-            Console.WriteLine($"Your text has: {CountLetters(someText)}");
-            Console.ReadKey();
-        }        
+            var textRows = tekst.Split(new string[] {"\n"}, StringSplitOptions.None);
 
-        private static string CountLetters(string someText)
-        {
-            var lettersCounter = "";
-            var duplicateList = new List<string>();
-            for (int i = 0; i < someText.Length; i++)
+            Console.WriteLine(tekst);
+            Console.WriteLine($"How many rows: {textRows.Length}");
+
+            for (int i = 0; i < textRows.Length; i++)
             {
-                if (!duplicateList.Contains(someText[i].ToString()))
-                {
-                    duplicateList.Add(someText[i].ToString());
-                    var counter = 0;
-
-                    for (int j = 0; j < someText.Length; j++)
-                    {
-                        if (someText[i] == someText[j]) counter++;
-                    }
-
-                    lettersCounter += $"{someText[i]} - {counter}, ";
-                }
+                Console.WriteLine($"Row number {i + 1} has {textRows[i].Length} chars and without spaces {GetTextCharsWithoutSpaces(textRows[i])}.");
             }
 
-            return lettersCounter;
-        }
+            Console.ReadKey();
+        }     
 
+        private static int GetTextCharsWithoutSpaces(string text)
+        {
+            var textWithoutSpaces = text.Contains(" ") ? text.Replace(" ", "") : text;
+
+            return textWithoutSpaces.Length;
+        }
     }
 }
