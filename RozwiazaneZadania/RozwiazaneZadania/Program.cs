@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RozwiazaneZadania
 {
@@ -8,39 +9,47 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz  program  analizujący  częstość  występowania  poszczególnych  znaków  w
-             * łańcuchu  znaków  wprowadzonym  przez  użytkownika.Np.   dla   wprowadzonego   tekstu
-             * „abrakadabra” program powinien wyświetlić informacje: a – 5, b – 2, r – 2, k – 1, d – 1.
+             * Napisz  program,  który  przeanalizuje  dany  łańcuch  pod  kątem  wielokrotnego
+             * występowania słów w tekście. Przykładowo dla zmiennej łańcuchowej o zawartości: „Kiedy
+             * idzie się po miód z balonikiem, to trzeba się starać, żeby pszczoły nie wiedziały, po co się
+             * dzie –odpowiedział Puchatek” –program powinien wypisać raport o słowach powielonych
+             * w tym tekście: idzie –2 razy, po –2 razy, się –3 razy.
              */
 
-            Console.Write("Write something: ");
-            var someText = Console.ReadLine();
+            var someText = "Kiedy idzie balonikiem się po miód z balonikiem, to trzeba się starać, żeby pszczoły nie wiedziały, kiedy wiedziały po co się idzie – odpowiedział balonikiem Puchatek";
 
-            Console.WriteLine($"Your text has: {CountLetters(someText)}");
+
+            Console.WriteLine(someText);
+            Console.WriteLine();
+            Console.WriteLine($"Your text has: {CountWords(someText)}");
             Console.ReadKey();
         }        
 
-        private static string CountLetters(string someText)
+        private static string CountWords(string someText)
         {
-            var lettersCounter = "";
+            var someTextWordsList = someText.Replace(",", "").Split(' ').Select(e => e.ToLower()).ToList();
+            var wordsCounter = "";
             var duplicateList = new List<string>();
-            for (int i = 0; i < someText.Length; i++)
+            for (int i = 0; i < someTextWordsList.Count; i++)
             {
-                if (!duplicateList.Contains(someText[i].ToString()))
+                if (!duplicateList.Contains(someTextWordsList[i]))
                 {
-                    duplicateList.Add(someText[i].ToString());
+                    duplicateList.Add(someTextWordsList[i]);
                     var counter = 0;
 
-                    for (int j = 0; j < someText.Length; j++)
+                    for (int j = 0; j < someTextWordsList.Count; j++)
                     {
-                        if (someText[i] == someText[j]) counter++;
+                        if (someTextWordsList[i] == someTextWordsList[j]) counter++;
                     }
 
-                    lettersCounter += $"{someText[i]} - {counter}, ";
+                    if (counter > 1)
+                    {
+                        wordsCounter += $"{someTextWordsList[i]} - {counter}, ";
+                    }
                 }
             }
 
-            return lettersCounter;
+            return wordsCounter;
         }
 
     }
