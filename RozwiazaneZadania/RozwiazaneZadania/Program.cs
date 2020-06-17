@@ -16,11 +16,11 @@ namespace RozwiazaneZadania
 
             Console.WriteLine("Which one is bigger?");
             Console.Write("Provide first value: ");
-            numbersCollection.Add(double.Parse(Console.ReadLine() ?? throw new InvalidOperationException()));
+            numbersCollection.Add(double.Parse(Console.ReadLine()));
             Console.Write("Provide second value: ");
-            numbersCollection.Add(double.Parse(Console.ReadLine() ?? throw new InvalidOperationException()));
+            numbersCollection.Add(double.Parse(Console.ReadLine()));
             Console.Write("Provide third value: ");
-            numbersCollection.Add(double.Parse(Console.ReadLine() ?? throw new InvalidOperationException()));
+            numbersCollection.Add(double.Parse(Console.ReadLine()));
 
             Console.WriteLine($"And the biggest number is: {GetBiggestNumber(numbersCollection)}");
             Console.WriteLine($"And the biggest number is: {GetBiggestNumberAlternative(numbersCollection)}");
@@ -33,12 +33,9 @@ namespace RozwiazaneZadania
 
             foreach (var number in numbersCollection)
             {
-                foreach (var compareToNumber in numbersCollection)
+                if (number > biggestNumber)
                 {
-                    if (number > compareToNumber && number > biggestNumber)
-                    {
-                        biggestNumber = number;
-                    }
+                    biggestNumber = number;
                 }
             }
 
