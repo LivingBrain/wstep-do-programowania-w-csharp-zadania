@@ -9,47 +9,35 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz  program,  który  przeanalizuje  dany  łańcuch  pod  kątem  wielokrotnego
-             * występowania słów w tekście. Przykładowo dla zmiennej łańcuchowej o zawartości: „Kiedy
-             * idzie się po miód z balonikiem, to trzeba się starać, żeby pszczoły nie wiedziały, po co się
-             * dzie –odpowiedział Puchatek” –program powinien wypisać raport o słowach powielonych
-             * w tym tekście: idzie –2 razy, po –2 razy, się –3 razy.
+             * W danej firmie środki trwałe mają identyfikatory złożone z kilku liter, myślnika oraz 
+             * czterech  cyfr.  Te  cztery  cyfry  to  rok  zakupu  danego  środka  trwałego.  Przykładowe
+             * identyfikatory to: KOMG-2002, BH-2010. Napisz program, który deklaruje 5-cio elementową
+             * tablicę  typu stringdla  środków  trwałych,  którą  należy  zainicjalizować  przykładowymi
+             * identyfikatorami w czasie deklaracji. Program ma dla każdego środka trwałegopodać liczbę
+             * lat, jakie upłynęły od jego zakupu.
              */
 
-            var someText = "Kiedy idzie balonikiem się po miód z balonikiem, to trzeba się starać, żeby pszczoły nie wiedziały, kiedy wiedziały po co się idzie – odpowiedział balonikiem Puchatek";
+            var codesTable = new string[5] {
+                "KOMG-2002",
+                "BH-2010",
+                "TE-1999",
+                "USE-2018",
+                "KART-1972" };
 
 
-            Console.WriteLine(someText);
-            Console.WriteLine();
-            Console.WriteLine($"Your text has: {CountWords(someText)}");
+            foreach (var productCode in codesTable)
+            {
+                Console.WriteLine($"Product with code {productCode} is {HowOld(productCode)} years old.");
+            }
+
             Console.ReadKey();
         }        
 
-        private static string CountWords(string someText)
+        private static int HowOld(string productCode)
         {
-            var someTextWordsList = someText.Replace(",", "").Split(' ').Select(e => e.ToLower()).ToList();
-            var wordsCounter = "";
-            var duplicateList = new List<string>();
-            for (int i = 0; i < someTextWordsList.Count; i++)
-            {
-                if (!duplicateList.Contains(someTextWordsList[i]))
-                {
-                    duplicateList.Add(someTextWordsList[i]);
-                    var counter = 0;
-
-                    for (int j = 0; j < someTextWordsList.Count; j++)
-                    {
-                        if (someTextWordsList[i] == someTextWordsList[j]) counter++;
-                    }
-
-                    if (counter > 1)
-                    {
-                        wordsCounter += $"{someTextWordsList[i]} - {counter}, ";
-                    }
-                }
-            }
-
-            return wordsCounter;
+            var currentDate = int.Parse(DateTime.Now.ToString("yyyy"));
+            var yearOfProductPurchase = int.Parse(productCode.Split('-')[1]);
+            return currentDate - yearOfProductPurchase;
         }
 
     }
