@@ -83,10 +83,13 @@ namespace RozwiazaneZadania
                 for (int i = 1; i <= totalSum - allCoinsSum; i++)
                 {
                     coinsCollectionList.Add(coin);
-                    if (allCoinsSum + coinsCollectionList.Sum() == totalSum) break;
+                    if (allCoinsSum + coinsCollectionList.Sum() >= totalSum) break;
                 }
 
-                PrintCoinsList(allCoinsSumString.Concat(coinsCollectionList).OrderByDescending(n => n).ToList());
+                if (allCoinsSum + coinsCollectionList.Sum() == totalSum)
+                {
+                    PrintCoinsList(allCoinsSumString.Concat(coinsCollectionList).OrderByDescending(n => n).ToList());
+                }
             }
 
             Console.ReadKey();
