@@ -7,22 +7,26 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz  program  zawierający  metodę  statyczną  obliczającą  temperaturę  w  stopniach
-             * Fahrenheita na temperaturę w stopniach Celsjusza. Metoda ma przyjmować jeden argument
-             * (temperaturę w stopniach Fahrenheita) i zwracać temperaturę w stopniach Celsjusza.
+             * Napisz  program  wczytujący  3  liczby  rzeczywiste a, b, x,  a  następnie  wywołujący
+             * metodę,  która  sprawdza,  czy  liczba x należy  do  przedziału  obustronnie  otwartego (a,  b).
+             * Metoda sprawdzająca ma zwrócić wartość logiczną, którą należy zinterpretować w metodzie
+             * Main() z podaniem stosownego komunikatu. 
              */
 
-            Console.WriteLine("Fahrenheit to Celsius calculator.");
-            Console.Write("Provide Fahrenheit value: ");
-            string fahrenheitValue = Console.ReadLine();
-            fahrenheitValue = fahrenheitValue != null && fahrenheitValue.Contains(".") ? fahrenheitValue.Replace(".", ",") : fahrenheitValue;
-            Console.WriteLine($"Celsius: {CalculateFahrenheitToCelsius(double.Parse(fahrenheitValue))}");
+            Console.Write("Provide value a: ");
+            int aValue = int.Parse(Console.ReadLine());
+            Console.Write("Provide value b: ");
+            int bValue = int.Parse(Console.ReadLine());
+            Console.Write("Provide value x: ");
+            int xValue = int.Parse(Console.ReadLine());
+            
+            Console.WriteLine($"Is x between a and b?: {CheckIfNumberIsBetween(aValue, bValue, xValue)}");
             Console.ReadKey();
         }
 
-        private static double CalculateFahrenheitToCelsius(double fahrenheitValue)
+        private static bool CheckIfNumberIsBetween(int aValue, int bValue, int xValue)
         {
-            return (fahrenheitValue - 32) / 1.8;
+            return aValue < xValue && xValue < bValue ? true : false;
         }
     }
 }
