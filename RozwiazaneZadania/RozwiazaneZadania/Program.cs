@@ -7,38 +7,57 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program, który ma znaleźć współrzędne punktu po przesunięciu o dany wektor. 
-             * W   metodzie Main()wczytaj   od  użytkownika  współrzędne  punktu Aoraz   zadeklaruj 
-             * współrzędne wektorawek[3, 2], a następnie wywołaj metodę o nazwie Przesun(), która ma 
-             * przesunąć  punkt A o  wektor wek(dodać  odpowiednie  współrzędne).  Współrzędne  punktu
-             * (jako  dwie  zmienne  typu double)  mają zostać przesłane do tej  metody  przez referencję, a 
-             * współrzędne  wektora  (także  jako  dwie  zmienne  typu double)  przez  wartość.  Metoda 
-             * Przesun()ma nic nie zwracać (void), aktualne współrzędne punktu mają być pamiętane dzięki
-             * użyciu  argumentów  przesyłanych przez  referencje.  Program  ma  wyświetlić  współrzędne
-             * punktu po przesunięciu  o wektor wek. Przykładowo, gdyby użytkownik podał początkowe 
-             * współrzędne  punktu A(2,  1),  to  wówczas  program  znajdzie  położenie  punktu A po 
-             * przesunięciu w miejscu o współrzędnych (5, 3) (czyli 2+3, 1+2).
+             * Napisz program, który mnoży elementy tablicy jednowymiarowej przez zadaną liczbę. 
+             * Mnożenie ma być wykonane w metodzie statycznej przyjmującej jako argumenty tablicę typu
+             * int oraz liczbę całkowitą (mnożnik). 
+             * Wykonaj zadanie w dwóch wariantach:
+             * a) Wewnątrz metody tworzona jest nowa tablica wynikowa, która ma być zwrócona
+             * przez metodę.
+             * b)  Wyniki  mnożenia  elementów  tablicy mają  zostać umieszczone  w  tablicy będącej
+             * argumentem metody(wtym wariancie metoda ma niczego nie zwracać).
+             * Przykładowo dla tablicy o elementach {1,4,6,8,2} oraz mnożniku 2 program powinien
+             * wyświetlić tablicę {2,8,12,16,4}.
              */
-            var aPoint = new int[2];
-            var vector = new int[2] { 3, 2 };
 
-            Console.Write("Provide first value of a point: ");
-            int aValue = int.Parse(Console.ReadLine());
-            Console.Write("Provide second value of a point: ");
-            int bValue = int.Parse(Console.ReadLine());
-            aPoint[0] = aValue;
-            aPoint[1] = bValue;
+            var table = new int[5] { 1, 4, 6, 8, 2 };
+            var multiplier = 3;
 
-            Przesun(ref aPoint, vector);
+            Console.WriteLine("a)");
+            PrintaTable(MultiplyResultsToNewTable(table, multiplier));
+            Console.WriteLine("b)");
+            MultiplyResultsNoNewTable(ref table, multiplier);
+            PrintaTable(table);
 
-            Console.WriteLine($"A point values: [{aPoint[0]}, {aPoint[1]}] ");
             Console.ReadKey();
         }
 
-        private static void Przesun(ref int[] aPoint, int[] vector)
+        private static int[] MultiplyResultsToNewTable(int[] table, int multiplier)
         {
-            aPoint[0] += vector[0];
-            aPoint[1] += vector[1];
+            var resultsTable = new int[table.Length];
+
+            for (int i = 0; i < table.Length; i++)
+            {
+                resultsTable[i] = table[i] * multiplier;
+            }
+
+            return resultsTable;
+        }
+
+        private static void MultiplyResultsNoNewTable(ref int[] table, int multiplier)
+        {
+            for (int i = 0; i < table.Length; i++)
+            {
+                table[i] = table[i] * multiplier;
+            }
+        }
+
+        private static void PrintaTable(int[] table)
+        {
+            foreach (var item in table)
+            {
+                Console.Write("{0, 3}", item);
+            }
+            Console.WriteLine();
         }
     }
 }
