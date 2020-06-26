@@ -7,57 +7,40 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program, który mnoży elementy tablicy jednowymiarowej przez zadaną liczbę. 
-             * Mnożenie ma być wykonane w metodzie statycznej przyjmującej jako argumenty tablicę typu
-             * int oraz liczbę całkowitą (mnożnik). 
-             * Wykonaj zadanie w dwóch wariantach:
-             * a) Wewnątrz metody tworzona jest nowa tablica wynikowa, która ma być zwrócona
-             * przez metodę.
-             * b)  Wyniki  mnożenia  elementów  tablicy mają  zostać umieszczone  w  tablicy będącej
-             * argumentem metody(wtym wariancie metoda ma niczego nie zwracać).
-             * Przykładowo dla tablicy o elementach {1,4,6,8,2} oraz mnożniku 2 program powinien
-             * wyświetlić tablicę {2,8,12,16,4}.
+             * Napisz program, który wypisze na ekranie znaki w kształcie prostokąta. Program ma 
+             * prosić użytkownika o podanie rozmiaru prostokąta: długość i szerokość, a następnie znak,
+             * którym  ma  być  zapełniony  prostokąt.  Napisz  metodę Rysuj(),  która  wypisze  na  konsoli
+             * prostokąt,  przesyłając  jako  argument  długość,  szerokość  oraz  znak  wypełnienia.  Wywołaj 
+             * metodę dwa razy, za drugim razem podaj na odwrót argumenty dla długości i szerokości.
+             * W wyniku działania programu powinny zostać wyświetlone dwa prostokąty, jeden „leżący”
+             * oraz  drugi „stojący”. Przykładowy przebieg działania programu na rysunku:
              */
 
-            var table = new int[5] { 1, 4, 6, 8, 2 };
-            var multiplier = 3;
+            Console.Write("Provide rectangle length: ");
+            int length = int.Parse(Console.ReadLine());
+            Console.Write("Provide rectangle width: ");
+            int width = int.Parse(Console.ReadLine());
+            Console.Write("Provide rectangle fill character: ");
+            string fillChar = Console.ReadLine();
 
-            Console.WriteLine("a)");
-            PrintaTable(MultiplyResultsToNewTable(table, multiplier));
-            Console.WriteLine("b)");
-            MultiplyResultsNoNewTable(ref table, multiplier);
-            PrintaTable(table);
+            PrintObject(length, width, fillChar);
+            Console.WriteLine();
+            PrintObject(width, length, fillChar);
 
             Console.ReadKey();
         }
 
-        private static int[] MultiplyResultsToNewTable(int[] table, int multiplier)
+        private static void PrintObject(int length, int width, string fillChar)
         {
-            var resultsTable = new int[table.Length];
-
-            for (int i = 0; i < table.Length; i++)
+            for (int i = 0; i < length; i++)
             {
-                resultsTable[i] = table[i] * multiplier;
-            }
-
-            return resultsTable;
-        }
-
-        private static void MultiplyResultsNoNewTable(ref int[] table, int multiplier)
-        {
-            for (int i = 0; i < table.Length; i++)
-            {
-                table[i] = table[i] * multiplier;
+                for (int j = 0; j < width; j++)
+                {
+                    Console.Write(fillChar);
+                }
+                Console.WriteLine();
             }
         }
 
-        private static void PrintaTable(int[] table)
-        {
-            foreach (var item in table)
-            {
-                Console.Write("{0, 3}", item);
-            }
-            Console.WriteLine();
-        }
     }
 }
