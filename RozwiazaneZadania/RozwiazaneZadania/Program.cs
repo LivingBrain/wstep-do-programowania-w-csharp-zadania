@@ -7,35 +7,22 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz program, który pozwoli zapełnić n–elementową tablicęjednowymiarowąliczb
-             * całkowitych  wartościami  podanymi  przez  użytkownika.  Na  początku  działania  programu
-             * użytkownik  podaje  liczbę  elementów  tablicy,  a  następnie  poszczególne  wartości  jej 
-             * elementów. Po wypełnieniu całej tablicy program powinien wypisać je w oknie konsoli.
+             * Napisz  program  zawierający  metodę  statyczną  obliczającą  temperaturę  w  stopniach
+             * Fahrenheita na temperaturę w stopniach Celsjusza. Metoda ma przyjmować jeden argument
+             * (temperaturę w stopniach Fahrenheita) i zwracać temperaturę w stopniach Celsjusza.
              */
 
-            Console.WriteLine("One dimension table.");
-            Console.Write("How many elements in table?: ");
-            var tableElements = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
-            var intTable = new int[tableElements];
-            for (int i = 0; i < intTable.Length; i++)
-            {
-                Console.Write($"Provide table element no {i+1}: ");
-                intTable[i] = int.Parse(Console.ReadLine());
-            }
-            PrintaTable(intTable);
-
+            Console.WriteLine("Fahrenheit to Celsius calculator.");
+            Console.Write("Provide Fahrenheit value: ");
+            string fahrenheitValue = Console.ReadLine();
+            fahrenheitValue = fahrenheitValue != null && fahrenheitValue.Contains(".") ? fahrenheitValue.Replace(".", ",") : fahrenheitValue;
+            Console.WriteLine($"Celsius: {CalculateFahrenheitToCelsius(double.Parse(fahrenheitValue))}");
             Console.ReadKey();
         }
 
-        private static void PrintaTable(int[] table)
+        private static double CalculateFahrenheitToCelsius(double fahrenheitValue)
         {
-            Console.WriteLine("Table begin.");
-            foreach (var item in table)
-            {
-                
-                Console.WriteLine(item);
-            }
-            Console.WriteLine("Table end.");
+            return (fahrenheitValue - 32) / 1.8;
         }
     }
 }
