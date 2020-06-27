@@ -7,68 +7,36 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Uzupełnij  program  z  zadania  5.4  (dowolny  wariant)  o  metodę przeładowaną
-             * przyjmującą tablicę typu stringoraz mnożnik typu int. W tym przypadku metoda ma powielać
-             * łańcuch znaków (konkatenować tyle razy, ile wynika z mnożnika). Przykładowo dla tablicy o
-             * elementach  {"ala",  "kot",  "dom"}  oraz  mnożniku  2  program  powinien  wyświetlić  tablicę 
-             * {"alaala", "kotkot", "domdom"}.
+             * Napisz statyczną metodę, która oblicza wyrażenie: 
+             * W = (x+1) + (x+2) + (x+3) +.......+ (x+n). W metodzie Main()wywołaj funkcję dla xi n
+             * (liczb naturalnych) wczytanych z klawiatury.
              */
 
-            var table = new int[5] { 1, 4, 6, 8, 2 };
-            var stringTable = new string[3] { "ala", "kot", "dom" };
-            var multiplier = 3;
+            Console.Write("Provide x number: ");
+            var xNumber = int.Parse(Console.ReadLine());
 
-            PrintaTable(MultiplyResultsToNewTable(table, multiplier));
-            Console.WriteLine();
-            PrintaTable(MultiplyResultsToNewTable(stringTable, multiplier));
+            Console.Write("Provide n number: ");
+            var nNumber = int.Parse(Console.ReadLine());
 
+            Console.WriteLine(CalculateMathematicalExpression(xNumber, nNumber));
+            Console.WriteLine(CalculateMathematicalExpressionRecursion(xNumber, nNumber));
             Console.ReadKey();
         }
 
-        private static int[] MultiplyResultsToNewTable(int[] table, int multiplier)
+        private static int CalculateMathematicalExpression(int xNumber, int nNumber)
         {
-            var resultsTable = new int[table.Length];
-
-            for (int i = 0; i < table.Length; i++)
+            var results = 0;
+            for (int i = 1; i <= nNumber; i++)
             {
-                resultsTable[i] = table[i] * multiplier;
+                results += xNumber + i;
             }
-
-            return resultsTable;
+            return results;
         }
 
-        private static string[] MultiplyResultsToNewTable(string[] table, int multiplier)
+        private static int CalculateMathematicalExpressionRecursion(int xNumber, int nNumber)
         {
-            var resultsTable = new string[table.Length];
-
-            for (int i = 0; i < table.Length; i++)
-            {
-                for (int j = 0; j < multiplier; j++)
-                {
-                    resultsTable[i] = resultsTable[i] + table[i];
-                }
-            }
-
-            return resultsTable;
-        }
-
-
-        private static void PrintaTable(int[] table)
-        {
-            foreach (var item in table)
-            {
-                Console.Write("{0, 3}", item);
-            }
-            Console.WriteLine();
-        }
-
-        private static void PrintaTable(string[] table)
-        {
-            foreach (var item in table)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine();
+            if (nNumber == 1) return xNumber + 1;
+            return (xNumber + nNumber--) + CalculateMathematicalExpressionRecursion(xNumber, nNumber);
         }
     }
 }
