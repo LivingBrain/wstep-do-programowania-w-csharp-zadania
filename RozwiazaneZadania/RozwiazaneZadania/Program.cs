@@ -7,36 +7,26 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz statyczną metodę, która oblicza wyrażenie: 
-             * W = (x+1) + (x+2) + (x+3) +.......+ (x+n). W metodzie Main()wywołaj funkcję dla xi n
-             * (liczb naturalnych) wczytanych z klawiatury.
+             * Napisz  metodę,  która  oblicza  sumę  cyfr  liczby  naturalnej x.  W  programie  głównym
+             * wywołaj funkcję dla x wczytanego z klawiatury. Przykładowo jeśli użytkownik wpisze 125, 
+             * to metoda powinna zwrócić wartość 8 (1+2+5=8). 
              */
 
             Console.Write("Provide x number: ");
-            var xNumber = int.Parse(Console.ReadLine());
+            var xNumber = Console.ReadLine();
 
-            Console.Write("Provide n number: ");
-            var nNumber = int.Parse(Console.ReadLine());
-
-            Console.WriteLine(CalculateMathematicalExpression(xNumber, nNumber));
-            Console.WriteLine(CalculateMathematicalExpressionRecursion(xNumber, nNumber));
+            Console.WriteLine(CalculateNumber(xNumber));
             Console.ReadKey();
         }
 
-        private static int CalculateMathematicalExpression(int xNumber, int nNumber)
+        private static int CalculateNumber(string xNumber)
         {
-            var results = 0;
-            for (int i = 1; i <= nNumber; i++)
+            var result = 0;
+            foreach (var number in xNumber)
             {
-                results += xNumber + i;
+                result += int.Parse(number.ToString());
             }
-            return results;
-        }
-
-        private static int CalculateMathematicalExpressionRecursion(int xNumber, int nNumber)
-        {
-            if (nNumber == 1) return xNumber + 1;
-            return (xNumber + nNumber--) + CalculateMathematicalExpressionRecursion(xNumber, nNumber);
+            return result;
         }
     }
 }
