@@ -25,12 +25,12 @@ namespace RozwiazaneZadania
 
         private static int CalculateMathematicalExpression(int x, int n)
         {
-            var results = 0;
+            var result = 0;
             for (int i = 1; i <= n; i++)
             {
-                results += x + i;
+                result += x + i;
             }
-            return results;
+            return result;
         }
 
         private static int CalculateMathematicalExpressionRecursion(int x, int n)
