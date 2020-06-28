@@ -13,30 +13,30 @@ namespace RozwiazaneZadania
              */
 
             Console.Write("Provide x number: ");
-            var xNumber = int.Parse(Console.ReadLine());
+            var x = int.Parse(Console.ReadLine());
 
             Console.Write("Provide n number: ");
-            var nNumber = int.Parse(Console.ReadLine());
+            var n = int.Parse(Console.ReadLine());
 
-            Console.WriteLine(CalculateMathematicalExpression(xNumber, nNumber));
-            Console.WriteLine(CalculateMathematicalExpressionRecursion(xNumber, nNumber));
+            Console.WriteLine(CalculateMathematicalExpression(x, n));
+            Console.WriteLine(CalculateMathematicalExpressionRecursion(x, n));
             Console.ReadKey();
         }
 
-        private static int CalculateMathematicalExpression(int xNumber, int nNumber)
+        private static int CalculateMathematicalExpression(int x, int n)
         {
             var results = 0;
-            for (int i = 1; i <= nNumber; i++)
+            for (int i = 1; i <= n; i++)
             {
-                results += xNumber + i;
+                results += x + i;
             }
             return results;
         }
 
-        private static int CalculateMathematicalExpressionRecursion(int xNumber, int nNumber)
+        private static int CalculateMathematicalExpressionRecursion(int x, int n)
         {
-            if (nNumber == 1) return xNumber + 1;
-            return (xNumber + nNumber--) + CalculateMathematicalExpressionRecursion(xNumber, nNumber);
+            if (n == 1) return x + 1;
+            return (x + n--) + CalculateMathematicalExpressionRecursion(x, n);
         }
     }
 }
