@@ -26,34 +26,37 @@ namespace RozwiazaneZadania
             var tempList = new List<int>();
             for (int i = 0; i <= nNumber; i++)
             {
-                if (i == 0)
+                if (i == 1 || i == 0)
                 {
                     tempList.Add(i);
-                } else if (i == 1)
+                }
+                else
                 {
-                    tempList.Add(i);
-                } else
-                {
-                    tempList.Add((tempList[i-1]) + (tempList[i - 2]));
+                    tempList.Add(tempList[i - 1] + tempList[i - 2]);
                 }
             }
 
             return tempList[nNumber];
         }
 
-        private static int CalculateFibonacciRecursion(int nNumber, int start = 1, int minusOne = 1, int minusTwo = 1)
+        // (0), (1), (1), (2), (3)
+        // (3), (2), (1), (1), (0)
+
+        // (F4),      (F3),      (F2),      (F1), (F0)
+        // (2 + 1),   (1 + 1),   (1 + 0),   (1),  (0)
+        // (F3 + F2), (F2 + F1), (F1 + F0), (1),  (0)
+        private static int CalculateFibonacciRecursion(int n)
         {
-            //if (nNumber == start)
-            //{
-            //    return minusOne + minusTwo;
-            //}
-            //else
-            //{
+            if (n == 1)
+            {
+                return 1;
+            }
+            else if (n == 0)
+            {
+                return 0;
+            }            
 
-            //    start++;
-            //}
-
-            //return CalculateFibonacciRecursion(nNumber++, start, minusOne, minusTwo);
+            return CalculateFibonacciRecursion(n - 1) + CalculateFibonacciRecursion(n - 2);
         }
     }
 }
