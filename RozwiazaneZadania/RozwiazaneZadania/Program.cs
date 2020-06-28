@@ -25,13 +25,13 @@ namespace RozwiazaneZadania
             Console.ReadKey();
         }
 
-        private static int[] MultiplyResultsToNewTable(int[] table, int multiplier)
+        private static string[] MultiplyResultsToNewTable(int[] table, int multiplier)
         {
-            var resultsTable = new int[table.Length];
+            var resultsTable = new string[table.Length];
 
             for (int i = 0; i < table.Length; i++)
             {
-                resultsTable[i] = table[i] * multiplier;
+                resultsTable[i] = (table[i] * multiplier).ToString();
             }
 
             return resultsTable;
@@ -52,8 +52,7 @@ namespace RozwiazaneZadania
             return resultsTable;
         }
 
-
-        private static void PrintaTable<T>(T[] table)
+        private static void PrintaTable(string[] table)
         {
             foreach (var item in table)
             {
