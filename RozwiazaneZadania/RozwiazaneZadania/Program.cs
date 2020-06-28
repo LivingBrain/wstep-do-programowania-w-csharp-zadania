@@ -7,58 +7,30 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Uzupełnij  program  z  zadania  5.4  (dowolny  wariant)  o  metodę przeładowaną
-             * przyjmującą tablicę typu stringoraz mnożnik typu int. W tym przypadku metoda ma powielać
-             * łańcuch znaków (konkatenować tyle razy, ile wynika z mnożnika). Przykładowo dla tablicy o
-             * elementach  {"ala",  "kot",  "dom"}  oraz  mnożniku  2  program  powinien  wyświetlić  tablicę 
-             * {"alaala", "kotkot", "domdom"}.
+             * Jaki będzie rezultat metody Oblicz()wywołanej z parametrem n = 5? Zadanie wykonaj 
+             * najpierw bez udziału kompilatora, a dopiero później uruchom program i sprawdź otrzymany
+             * wynik.
+             * static int Oblicz(int n)
+             * {
+             * if (n <= 1) return (1);
+             * else return (n + Oblicz(n -1));
+             * }
              */
 
-            var table = new int[5] { 1, 4, 6, 8, 2 };
-            var stringTable = new string[3] { "ala", "kot", "dom" };
-            var multiplier = 3;
-
-            PrintaTable(MultiplyResultsToNewTable(table, multiplier));
-            Console.WriteLine();
-            PrintaTable(MultiplyResultsToNewTable(stringTable, multiplier));
+            Console.WriteLine(Oblicz(5));
 
             Console.ReadKey();
         }
 
-        private static string[] MultiplyResultsToNewTable(int[] table, int multiplier)
+        // (n + Oblicz(n - 1))
+        // 5 + Oblicz(5 - 1) => 4 + Oblicz(4 - 1) => 3 + Oblicz(3 - 1) => 2 + Oblicz(2 - 1) => 1
+        // 5 + 10            => 4 + 6             => 3 + 3             => 2 + 1             => 1
+        // Result = 15
+
+        public static int Oblicz(int n)
         {
-            var resultsTable = new string[table.Length];
-
-            for (int i = 0; i < table.Length; i++)
-            {
-                resultsTable[i] = (table[i] * multiplier).ToString();
-            }
-
-            return resultsTable;
+            if (n <= 1) return (1);
+            else return (n + Oblicz(n - 1));
         }
-
-        private static string[] MultiplyResultsToNewTable(string[] table, int multiplier)
-        {
-            var resultsTable = new string[table.Length];
-
-            for (int i = 0; i < table.Length; i++)
-            {
-                for (int j = 0; j < multiplier; j++)
-                {
-                    resultsTable[i] = resultsTable[i] + table[i];
-                }
-            }
-
-            return resultsTable;
-        }
-
-        private static void PrintaTable(string[] table)
-        {
-            foreach (var item in table)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine();
-        }        
     }
 }
