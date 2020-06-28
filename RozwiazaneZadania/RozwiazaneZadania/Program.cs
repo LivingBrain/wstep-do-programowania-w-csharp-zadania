@@ -53,22 +53,13 @@ namespace RozwiazaneZadania
         }
 
 
-        private static void PrintaTable(int[] table)
-        {
-            foreach (var item in table)
-            {
-                Console.Write("{0, 3}", item);
-            }
-            Console.WriteLine();
-        }
-
-        private static void PrintaTable(string[] table)
+        private static void PrintaTable<T>(T[] table)
         {
             foreach (var item in table)
             {
                 Console.WriteLine(item);
             }
             Console.WriteLine();
-        }
+        }        
     }
 }
