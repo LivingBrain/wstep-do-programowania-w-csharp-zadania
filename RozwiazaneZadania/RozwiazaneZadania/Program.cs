@@ -7,22 +7,41 @@ namespace RozwiazaneZadania
         static void Main(string[] args)
         {
             /*
-             * Napisz  program  zawierający  metodę  statyczną  obliczającą  temperaturę  w  stopniach
-             * Fahrenheita na temperaturę w stopniach Celsjusza. Metoda ma przyjmować jeden argument
-             * (temperaturę w stopniach Fahrenheita) i zwracać temperaturę w stopniach Celsjusza.
+             * Napisz  program,  który  tworzy  klasę Prostokat,   zawierającą  dwie  prywatne  dane
+             * składowe: dlugosc, szerokosc,  dwie  prywatne  metody: powierzchnia(), obwod()oraz metodę
+             * publiczną –Prezentuj()(która  wyświetla  powierzchnię  i  obwód  prostokąta)  i  konstruktor
+             * inicjalizujący. W metodzie Main()zdefiniuj obiekt iuruchom dla niego metodę Prezentuj().
              */
+            Prostokat prostokat = new Prostokat();
 
-            Console.WriteLine("Fahrenheit to Celsius calculator.");
-            Console.Write("Provide Fahrenheit value: ");
-            string fahrenheitValue = Console.ReadLine();
-            fahrenheitValue = fahrenheitValue != null && fahrenheitValue.Contains(".") ? fahrenheitValue.Replace(".", ",") : fahrenheitValue;
-            Console.WriteLine($"Celsius: {CalculateFahrenheitToCelsius(double.Parse(fahrenheitValue))}");
+            Console.WriteLine("Prostokat");
+            prostokat.Prezentuj(2, 4);
             Console.ReadKey();
         }
 
-        private static double CalculateFahrenheitToCelsius(double fahrenheitValue)
+        
+        public class Prostokat
         {
-            return (fahrenheitValue - 32) / 1.8;
+            private int dlugosc;
+            private int szerokosc;
+
+            private int Powierzchnia()
+            {
+                return dlugosc * szerokosc;
+            }
+
+            private int Obwod()
+            {
+                return 2 * dlugosc + 2 * szerokosc;
+            }
+
+            public void Prezentuj(int dlugosc, int szerokosc)
+            {
+                this.dlugosc = dlugosc;
+                this.szerokosc = szerokosc;
+                Console.WriteLine(Powierzchnia());
+                Console.WriteLine(Obwod());
+            }
         }
     }
 }
